@@ -39,3 +39,25 @@ p1.categories.create(title: "Men")
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo1.jpg")
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo2.jpg")
 p1.product_variants.create(size: "S", color: "Navy")
+
+p2 = Product.create(title: 'Core Stretch Slim Poplin Shirt', desc: 
+    "One of the world’s leading designer lifestyle brands, Tommy Hilfiger is the essence of classic American style. Hilfiger’s signature collection was introduced in the mid-‘80s, showcasing long-lasting accessories and time-honoured staples including button-up shirts, chinos and knits expertly modernised with updated fits and details. Recognised internationally for its iconic red, white and blue flag logo, the brand’s relaxed and youthful attitude has remained a distinctive hallmark throughout their collections.
+
+    Our model is wearing a size medium shirt. He is 182.9cm (6’0”) tall with a 91.4cm (36”) chest and a 76.2cm (30”) waist.
+    
+    - Length: 78cm (size medium) 
+    - Slim fit 
+    - Cotton-rich poplin; some stretch 
+    - Black 
+    - Button-down collar 
+    - Button-through front 
+    - Long sleeves; barrel cuffs 
+    - Navy, red and white flag embroidery to the left chest 
+    - Rear waist darts", price: 149.00, date_stocked: DateTime.new(2020, 5, 8))
+p2.collections.create(title: "Premium")
+p2.collections.create(title: "Long Sleeves")
+p2.collections.create(title: "Tommy Hilfiger")
+p2.categories.create(title: "Men")
+p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy1.jpg")
+p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy2.jpg")
+p2.product_variants.create(size: "S", color: "Flag Black")

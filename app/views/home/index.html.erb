@@ -1,10 +1,17 @@
-<% @products.each do |product| %>
+<% count = Product.count %>
+<% rand_offset = rand(count) %>
+<% random_product = Product.offset(rand_offset).first %>
+
+<% count = random_product.collections.count %>
+<% rand_offset = rand(count) %>
+<% random_collections = random_product.collections.offset(rand_offset).first %>
+
 <div class="card text-white">
-  <img src=<%= product.images.first.url %> class="card-img " alt="...">
-  <div class="card-img-overlay">
-    <h5 class="card-title"><%= product.collections[0].title %></h5>
-    <p class="card-text"><%= product.title %></p>
-    <p class="card-text">$<%= product.price %>0</p>
+  <img src=<%= random_product.images.first.url %> class="card-img " alt="...">
+  <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+    <!--sample to display random collection for a random product -->
+    <h1 class="card-title" style = "text-shadow: 1px 1px #000000; "><%= random_product.collections.sample.title %></h1>
+    <h5 class="card-text" style = "text-shadow: 1px 1px #000000;"><%= random_product.title %></h5>
+    <h5 class="card-text" style = "text-shadow: 1px 1px #000000;">$<%= random_product.price %></h5>
   </div>
 </div>
-<% end %>
