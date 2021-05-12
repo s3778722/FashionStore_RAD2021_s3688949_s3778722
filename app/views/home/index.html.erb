@@ -2,9 +2,16 @@
 <% rand_offset = rand(count) %>
 <% random_product = Product.offset(rand_offset).first %>
 
-<% count = random_product.collections.count %>
-<% rand_offset = rand(count) %>
-<% random_collections = random_product.collections.offset(rand_offset).first %>
+<% if current_user %>
+  <p> Logged in as: </p>
+  <p> Email: <%= current_user.email %></p>
+  <p> Username: <%= current_user.username %></p>
+  <%= link_to "Sign Out", signout_path %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Sign In", signin_path %>
+<% end %>
+
 
 <div class="card text-white">
   <img src=<%= random_product.images.first.url %> class="card-img " alt="...">
