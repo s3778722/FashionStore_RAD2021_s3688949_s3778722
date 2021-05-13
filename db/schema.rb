@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_05_13_090251) do
 
-  #cart_items belongs to user and product
   create_table "bags", force: :cascade do |t|
     t.integer "user_id"
     t.integer "quantity"
