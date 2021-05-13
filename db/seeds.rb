@@ -25,7 +25,7 @@ Image.destroy_all
 Collection.destroy_all
 ProductVariant.destroy_all
 
-u1 = User.create(username: "admin", password: "admin", email: "admin@gmail.com")
+u1 = User.create(username: "admin1", password: "adminadmin", password_confirmation: "adminadmin", email: "admin1@gmail.com")
 
 p1 = Product.create(title: 'Short Sleeve Knit Polo', desc: 
     "Crafted from light and breathable cotton pique and finished with a classic flat knit collar and two-button placket, the Short Sleeve Knit Polo Shirt by Polo Ralph Lauren is a US patriot's dream. We love the unmistakable pony logo embroidered to the chest for a nod to the brand's sporting heritage.

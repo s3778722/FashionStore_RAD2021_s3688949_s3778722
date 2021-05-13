@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
 
   has_many :favourites, dependent: :destroy
-  has_one :bag
+  has_many :bags #treat it as bag_items
 end
