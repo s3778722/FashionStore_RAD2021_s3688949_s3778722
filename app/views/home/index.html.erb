@@ -2,6 +2,7 @@
 <% rand_offset = rand(count) %>
 <% random_product = Product.offset(rand_offset).first %>
 
+
 <% if current_user %>
   <p> Logged in as: </p>
   <p> Email: <%= current_user.email %></p>
@@ -14,7 +15,7 @@
 
 
 <div class="card text-white">
-  <img src=<%= random_product.images.first.url %> class="card-img " alt="...">
+  <img src=<%= random_product.images.sample.url %> class="card-img " alt="...">
   <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
     <!--sample to display random collection for a random product -->
     <h1 class="card-title" style = "text-shadow: 1px 1px #000000; "><%= random_product.collections.sample.title %></h1>
@@ -22,3 +23,10 @@
     <h5 class="card-text" style = "text-shadow: 1px 1px #000000;">$<%= random_product.price %></h5>
   </div>
 </div>
+
+<form action="/">
+  <input type="hidden" name="product_id" value= <%=random_product.id%> >
+  <input type="submit" value="Save">
+</form>
+<h1>Temporary Saved List: </h1>
+<h1><%= @saved_list %></h1>
