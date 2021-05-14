@@ -9,6 +9,7 @@ class HomeController < ApplicationController
       redirect_to root_path
     end
     @saved_list = cookies[:saved_products]
+
     #to select the list item
     #a = JSON.parse(cookies[:saved_productss])
     #@output = a[2]
@@ -26,9 +27,23 @@ class HomeController < ApplicationController
     end
   end
 
+  def delete_cookies(id)
+    current = JSON.parse cookies[:saved_products]
+    current.delete(id)
+    cookies[:saved_products] = JSON.generate current
+  end
+
   def randomize
-    count = Product.count
-    rand_offset = rand(count)
-    @random_product = Product.offset(rand_offset).first
+    if cookies[:saved_products] != nil
+      cookie_parse = JSON.parse(cookies[:saved_products])
+      @last_cookie = cookie_parse.last
+      @random_product = Product.offset(rand(Product.count)).first
+      while @last_cookie.to_i == @random_product.id
+        @random_product = Product.offset(rand(Product.count)).first
+        break if @last_cookie.to_i != @random_product.id
+      end
+    else
+      @random_product = Product.offset(rand(Product.count)).first
+    end
   end
 end
