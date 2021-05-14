@@ -25,11 +25,29 @@
     <h5 class="card-text" style = "text-shadow: 1px 1px #000000;">$<%= @random_product.price %></h5>
   </div>
 </div>
-
 <form action="/">
   <input type="hidden" name="product_id" value= <%=@random_product.id%>>
   <input type="submit" value="Save">
 </form>
+
+<br/>
+
+<div class="d-flex justify-content-between">
+<h1><strong>Popular</strong></h1>
+<h5>See All</h5>
+</div>
+<div class="container">
+  <div class="row">
+      <% @products_ordered = Product.order("popularity DESC").limit(3) %>
+      <% @products_ordered.each do |p| %>
+      <div class="col">
+      <img src=<%= p.images.sample.url %> class="card-img " alt="...">
+      <p ><%= p.title %></p>
+      <p  style="margin-top: -10px;">$<%= p.price %></p>
+      </div>
+      <% end %>
+  </div>
+</div>
 <h1>Temporary Saved List: </h1>
 <h1><%= @saved_list %></h1>
 

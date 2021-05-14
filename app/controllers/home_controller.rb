@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   def index
+    #uncomment this to delete cookies
     #cookies.delete :saved_products
     @products = Product.all
     randomize()
@@ -27,11 +28,19 @@ class HomeController < ApplicationController
   def add_cookies(id)
     if cookies[:saved_products].nil?
       cookies[:saved_products] = JSON.generate([id])
+      #add each product saved with +1 score
+      product = Product.find(id)
+      product.popularity += 1
+      product.save
     else
       if !cookies[:saved_products].include?(id)
         current = JSON.parse cookies[:saved_products]
         current << id
         cookies[:saved_products] = JSON.generate current
+        #add each product saved with +1 score
+        product = Product.find(id)
+        product.popularity += 1
+        product.save
       end
     end
   end
