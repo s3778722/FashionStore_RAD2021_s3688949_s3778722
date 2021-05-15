@@ -63,3 +63,25 @@ p2.categories.create(title: "Men")
 p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy1.jpg")
 p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy2.jpg")
 p2.product_variants.create(size: "S", color: "Flag Black")
+
+p2 = Product.create(title: 'White Stretch Travel Shirt', desc: 
+    "Black shirts like the Oxford WhiteStretch Travel Shirt go really well with dark suits for evening events, making this style a good choice. Cut in a slim fit, the garment is cotton-blended with a touch of stretch so it doesn't feel restrictive.
+
+
+    Our model is wearing size medium shirt, and usually takes a size medium. He is 6'2\" (188cm) tall with a 37\" (94cm) chest and a 31.5\" (80cm) waist.
+    
+    
+    - Length: 79cm (Size M)
+    - Slim fit
+    - White stretch fabric
+    - Small collar
+    - Oxford engraved buttons
+    - Single button cuffs
+    - 82% Cotton 16% Nylon 2% Spandex", price: 69.00, date_stocked: DateTime.new(2020, 5, 15))
+p2.collections.create(title: "Office Wear")
+p2.collections.create(title: "Long Sleeves")
+p2.collections.create(title: "Slim Fit")
+p2.categories.create(title: "Men")
+p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford1.jpg")
+p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford2.jpg")
+p2.product_variants.create(size: "S", color: "White")
