@@ -34,7 +34,7 @@ p1 = Product.create(title: 'Short Sleeve Knit Polo', desc:
     
     - Cotton pique; natural stretch 
     - Flat knit polo collar; two-button
-    - Printed, sewn and embroidered designs to front", price: 199.00, date_stocked: DateTime.new(2020, 5, 8))
+    - Printed, sewn and embroidered designs to front", price: 199.00, date_stocked: DateTime.new(2020, 5, 8), popularity: 3)
 p1.collections.create(title: "Premium")
 p1.collections.create(title: "Polo")
 p1.categories.create(title: "Men")
@@ -55,7 +55,7 @@ p2 = Product.create(title: 'Core Stretch Slim Poplin Shirt', desc:
     - Button-through front 
     - Long sleeves; barrel cuffs 
     - Navy, red and white flag embroidery to the left chest 
-    - Rear waist darts", price: 149.00, date_stocked: DateTime.new(2020, 5, 8))
+    - Rear waist darts", price: 149.00, date_stocked: DateTime.new(2020, 5, 8), popularity: 5)
 p2.collections.create(title: "Premium")
 p2.collections.create(title: "Long Sleeves")
 p2.collections.create(title: "Tommy Hilfiger")
@@ -77,7 +77,7 @@ p2 = Product.create(title: 'White Stretch Travel Shirt', desc:
     - Small collar
     - Oxford engraved buttons
     - Single button cuffs
-    - 82% Cotton 16% Nylon 2% Spandex", price: 69.00, date_stocked: DateTime.new(2020, 5, 15))
+    - 82% Cotton 16% Nylon 2% Spandex", price: 69.00, date_stocked: DateTime.new(2020, 5, 15), popularity: 1)
 p2.collections.create(title: "Office Wear")
 p2.collections.create(title: "Long Sleeves")
 p2.collections.create(title: "Slim Fit")

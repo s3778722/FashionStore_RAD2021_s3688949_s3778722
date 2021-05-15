@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
-  
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i 
+
   def index
     #uncomment this to delete cookies
-    #cookies.delete :saved_products
+    cookies.delete :saved_products
     @products = Product.all
     randomize()
     #if form is submitted, add cookies
@@ -12,12 +12,12 @@ class HomeController < ApplicationController
       add_cookies(params[:product_id])
       redirect_to root_path
     end
-    
+
     if params.include?(:address)
       puts "working"
       newsletter_signup(params[:address])
     end
-    
+
     @saved_list = cookies[:saved_products]
 
     #to select the list item
@@ -64,16 +64,15 @@ class HomeController < ApplicationController
       @random_product = Product.offset(rand(Product.count)).first
     end
   end
-  
+
   def is_valid_email? email
     email =~ VALID_EMAIL_REGEX
   end
-  
+
   def newsletter_signup(address)
     if (is_valid_email?(address))
       NewsletterMailer.send_email(address).deliver
       redirect_to("/", :notice => 'Sent email')
-      
     else
       redirect_to("/", :notice => 'Not a valid email address')
     end

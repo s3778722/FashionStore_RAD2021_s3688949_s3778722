@@ -23,18 +23,19 @@
     <h1 class="card-title" style = "text-shadow: 1px 1px #000000; "><%= @random_product.collections.sample.title %></h1>
     <h5 class="card-text" style = "text-shadow: 1px 1px #000000;"><%= @random_product.title %></h5>
     <h5 class="card-text" style = "text-shadow: 1px 1px #000000;">$<%= @random_product.price %></h5>
+    <form action="/">
+      <input type="hidden" name="product_id" value= <%=@random_product.id%>>
+      <input class="btn btn-light" type="submit" value="Save">
+    </form>
   </div>
 </div>
-<form action="/">
-  <input type="hidden" name="product_id" value= <%=@random_product.id%>>
-  <input type="submit" value="Save">
-</form>
 
 <br/>
 
 <div class="d-flex justify-content-between">
 <h1>Popular</h1>
-<h5>See All</h5>
+<!--Used text decoration = none to hide underline for hyperlink-->
+<h5><%= link_to "See All", popular_path, {:style=>'text-decoration: none;'} %></h5>
 </div>
 <div class="container">
   <div class="row">
@@ -42,9 +43,11 @@
       <% @products_ordered = Product.order("popularity DESC").limit(2) %>
       <% @products_ordered.each do |p| %>
       <div class="col">
-      <img src=<%= p.images.sample.url %> class="card-img " alt="...">
-      <p ><%= p.title %></p>
-      <p  style="margin-top: -10px;">$<%= p.price %></p>
+        <a href="<%=products_view_path(p.id)%>">
+          <img src=<%= p.images.sample.url %> class="card-img " alt="...">
+          <p ><%= p.title %></p>
+          <p  style="margin-top: -10px;">$<%= p.price %></p>
+        </a>
       </div>
       <% end %>
   </div>
