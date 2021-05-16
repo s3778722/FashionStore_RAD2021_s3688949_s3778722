@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
   # GET /products/1 or /products/1.json
   def show
   end
+  
+  def all
+    @products = Product.all
+  end
 
   # GET /products/new
   def new

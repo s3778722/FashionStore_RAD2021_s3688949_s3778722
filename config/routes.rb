@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new', as: 'signin'
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'products/popular', to: 'products#popular', as: 'popular'
+  get 'products/all', to: 'products#all', as: 'all'
   get 'products/:id', to: 'products#show', as: 'products_view'
   #get 'home/index'
   root 'home#index'
