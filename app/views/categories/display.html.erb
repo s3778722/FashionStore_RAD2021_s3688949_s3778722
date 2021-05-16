@@ -1,0 +1,60 @@
+<div style="margin-top:-20px;" class="d-flex justify-content-between">
+    <div class="dropdown">
+        <button class="btn btn dropdown-toggle" style="font-size: 20px;" 
+        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        All
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Women</a></li>
+            <li><a class="dropdown-item" href="#">Men</a></li>
+            <li><a class="dropdown-item" href="#">Kids</a></li>
+            <li><a class="dropdown-item" href="#">New</a></li>
+        </ul>
+    </div>
+      <div class="dropdown">
+        <button class="btn btn dropdown-toggle" style="font-size: 20px;" 
+        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Filter
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Women</a></li>
+            <li><a class="dropdown-item" href="#">Men</a></li>
+            <li><a class="dropdown-item" href="#">Kids</a></li>
+            <li><a class="dropdown-item" href="#">New</a></li>
+        </ul>
+    </div>
+</div>
+
+<br/>
+
+<h1><%= @category.title %></h1>
+</div>
+<div class="container">
+      <!--Show two popular product in descending order-->
+      <% @products.in_groups_of(2) do |p1, p2| %>
+        <% if p1.category_ids.include? @category_id %>
+        <% puts @category_id %>
+        <div class="row">
+        <div class="col-6">
+          <a href="<%=all_path(p1.id)%>">
+              <img src=<%= p1.images.sample.url %> class="card-img " alt="...">
+              <p ><%= p1.title %></p>
+              <p style="margin-top: -10px;">$<%= p1.price %></p>
+          </a>
+        </div>
+        <% end %>
+       <!--Take care of Odd Number-->
+        <% if p2 %>
+        <% if p2.category_ids.include? @category_id %>
+          <div class="col-6">
+              <a href="<%=all_path(p2.id)%>">
+                  <img src=<%= p2.images.sample.url %> class="card-img " alt="...">
+                  <p ><%= p2.title %></p>
+                  <p style="margin-top: -10px;">$<%= p2.price %></p>
+              </a>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
