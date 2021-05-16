@@ -55,7 +55,7 @@
   </div>
 </div>
 <hr>
-
+<div class="d-flex justify-content-between">
 <h1>Collections</h1>
 <!--Used text decoration = none to hide underline for hyperlink-->
 <h5><%= link_to "See All +", all_path, {:style=>'text-decoration: none;'} %></h5>
@@ -67,6 +67,7 @@
       <% @products_ordered = Product.order("popularity DESC").limit(2) %>
       <% @products_ordered.each do |p| %>
       <div class="col">
+        <p>CHANGING THIS BACK TO CARDS, IT DIED</p>
         <a href="<%=products_view_path(p.id)%>">
           <img src=<%= p.images.sample.url %> class="card-img " alt="...">
           <p ><%= p.title %></p>
