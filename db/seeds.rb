@@ -25,6 +25,11 @@ Image.destroy_all
 Collection.destroy_all
 ProductVariant.destroy_all
 
+c1 = Category.create(title: "Men")
+c2 = Category.create(title: "Women")
+c3 = Category.create(title: "Kids")
+c4 = Category.create(title: "New")
+
 u1 = User.create(username: "admin1", password: "adminadmin", password_confirmation: "adminadmin", email: "admin1@gmail.com")
 
 p1 = Product.create(title: 'Short Sleeve Knit Polo', desc: 
@@ -37,7 +42,7 @@ p1 = Product.create(title: 'Short Sleeve Knit Polo', desc:
     - Printed, sewn and embroidered designs to front", price: 199.00, date_stocked: DateTime.new(2020, 5, 8), popularity: 3)
 p1.collections.create(title: "Premium")
 p1.collections.create(title: "Polo")
-p1.categories.create(title: "Men")
+p1.categories << c1
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo1.jpg")
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo2.jpg")
 p1.product_variants.create(size: "S", color: "Navy")
@@ -59,12 +64,12 @@ p2 = Product.create(title: 'Core Stretch Slim Poplin Shirt', desc:
 p2.collections.create(title: "Premium")
 p2.collections.create(title: "Long Sleeves")
 p2.collections.create(title: "Tommy Hilfiger")
-p2.categories.create(title: "Men")
+p2.categories << c1
 p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy1.jpg")
 p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/tommy2.jpg")
 p2.product_variants.create(size: "S", color: "Flag Black")
 
-p2 = Product.create(title: 'White Stretch Travel Shirt', desc: 
+p3 = Product.create(title: 'White Stretch Travel Shirt', desc: 
     "Black shirts like the Oxford WhiteStretch Travel Shirt go really well with dark suits for evening events, making this style a good choice. Cut in a slim fit, the garment is cotton-blended with a touch of stretch so it doesn't feel restrictive.
 
 
@@ -78,10 +83,10 @@ p2 = Product.create(title: 'White Stretch Travel Shirt', desc:
     - Oxford engraved buttons
     - Single button cuffs
     - 82% Cotton 16% Nylon 2% Spandex", price: 69.00, date_stocked: DateTime.new(2020, 5, 15), popularity: 1)
-p2.collections.create(title: "Office Wear")
-p2.collections.create(title: "Long Sleeves")
-p2.collections.create(title: "Slim Fit")
-p2.categories.create(title: "Men")
-p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford1.jpg")
-p2.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford2.jpg")
-p2.product_variants.create(size: "S", color: "White")
+p3.collections.create(title: "Office Wear")
+p3.collections.create(title: "Long Sleeves")
+p3.collections.create(title: "Slim Fit")
+p3.categories << c1
+p3.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford1.jpg")
+p3.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford2.jpg")
+p3.product_variants.create(size: "S", color: "White")
