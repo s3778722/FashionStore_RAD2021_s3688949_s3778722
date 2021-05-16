@@ -6,10 +6,9 @@
         <div class="float-start">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <img src="/menu-btn.svg" alt="">
-                    </a>
-
+                    <div id="main">
+                    <img class="openbtn" onclick="openNav()" src="/menu-btn.svg" alt="">
+                    </div>
                 </li>
             </ul>
         </div>
@@ -31,3 +30,23 @@
 </nav>
 
 <br>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
