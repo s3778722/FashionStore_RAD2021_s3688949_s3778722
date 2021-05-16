@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'products/all', to: 'products#all', as: 'all'
   get 'products/:id', to: 'products#show', as: 'products_view'
   get 'category/:id', to: 'categories#display', as: 'category_view'
+  get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
+
   #get 'home/index'
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def index
     #uncomment this to delete cookies
-    cookies.delete :saved_products
+    #cookies.delete :saved_products
     @products = Product.all
     randomize()
     #if form is submitted, add cookies

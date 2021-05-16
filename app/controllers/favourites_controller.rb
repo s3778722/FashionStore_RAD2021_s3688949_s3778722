@@ -6,6 +6,27 @@ class FavouritesController < ApplicationController
     @favourites = Favourite.all
   end
 
+  def saved_list
+    @products = Product.all
+    @saved_list = cookies[:saved_products]
+    #check if cookie list is not empty, parse the list with JSON if true.
+    if cookies[:saved_products] != nil
+      @parsed_list = JSON.parse cookies[:saved_products]
+    end
+
+    #check if hidden parameters are passed, delete cookie with product id if true.
+    if params.include?(:product_id)
+      delete_cookies(params[:product_id])
+      redirect_to saved_list_path
+    end
+  end
+
+  def delete_cookies(id)
+    current = JSON.parse cookies[:saved_products]
+    current.delete(id)
+    cookies[:saved_products] = JSON.generate current
+  end
+
   # GET /favourites/1 or /favourites/1.json
   def show
   end

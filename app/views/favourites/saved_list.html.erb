@@ -1,0 +1,23 @@
+<h1>Saved List</h1>
+
+<% if cookies[:saved_products] != nil %> 
+    <% @parsed_list.each do |i1| %> 
+      <div class="d-flex">
+        <% p1 = Product.find(i1) %>
+        <div class="flex-shrink-100">
+            <img src=<%= p1.images.sample.url %> class="card-img" alt="...">
+        </div>
+        <div class="flex-grow-1 ms-5">
+            <a href="<%=products_view_path(p1.id)%>">
+                <p ><%= p1.title %></p>
+                <p style="margin-top: -10px;">$<%= p1.price %></p>
+            </a>
+            <form action="/saved-list">
+                <input type="hidden" name="product_id" value= <%=p1.id%>>
+                <input class="btn btn-light" type="submit" value="Unsave">
+            </form>
+         </div>
+      </div>
+      <hr>
+    <% end %>
+<% end %>
