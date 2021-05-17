@@ -63,19 +63,89 @@
 <div class="container">
   <div class="row">
       <!--Show two popular product in descending order-->
-      
-      <% @products_ordered = Product.order("popularity DESC").limit(2) %>
-      <% @products_ordered.each do |p| %>
       <div class="col">
-        <p>CHANGING THIS BACK TO CARDS, IT DIED</p>
-        <a href="<%=products_view_path(p.id)%>">
-          <img src=<%= p.images.sample.url %> class="card-img " alt="...">
-          <p ><%= p.title %></p>
-          <p  style="margin-top: -10px;">$<%= p.price %></p>
+        <a href="/category/1">
+          <div class="card text-white m-1">
+          <img class="card-img" src="https://kevymusicapp.s3.amazonaws.com/men-logo.jpg" alt="Card image">
+            <div class="card-img-overlay">
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <h4 class="card-title" style="font-weight:bold;">MEN</h3>
+              <p class="card-text" style="font-weight:bold;"><%=Category.find(1).products.count %> Items </p>
+            </div>
+          </div>
         </a>
       </div>
-      <% end %>
-      
+      <div class="col">
+        <a href="/category/2">
+        <div class="card text-black m-1">
+        <img class="card-img" src="https://kevymusicapp.s3.amazonaws.com/women-logo.jpg" alt="Card image">
+          <div class="card-img-overlay">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4 class="card-title" style="font-weight:bold;">WOMEN</h3>
+            <p class="card-text" style="font-weight:bold;"><%=Category.find(2).products.count %> Items </p>
+          </div>
+        </div>
+        </a>
+      </div>
+  </div>
+  <div class="row">
+      <!--Show two popular product in descending order-->
+      <div class="col">
+        <a href="/category/4">
+        <div class="card text-black m-1">
+        <img class="card-img" src="https://kevymusicapp.s3.amazonaws.com/new-arrivals-logo.jpg" alt="Card image">
+          <div class="card-img-overlay">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4 class="card-title" style="font-weight:bold;">NEW ARRIVALS</h3>
+            <p class="card-text" style="font-weight:bold;"><%=Category.find(4).products.count %> Items </p>
+          </div>
+        </div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="/category/3">
+        <div class="card text-white m-1">
+        <img class="card-img" src="https://kevymusicapp.s3.amazonaws.com/kids-logo.jpg" alt="Card image">
+          <div class="card-img-overlay">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h4 class="card-title" style="font-weight:bold;">KIDS</h3>
+            <p class="card-text" style="font-weight:bold;"><%=Category.find(3).products.count %> Items </p>
+          </div>
+        </div>
+        </a>
+      </div>
   </div>
 </div>
 
