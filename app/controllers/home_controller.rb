@@ -25,6 +25,9 @@ class HomeController < ApplicationController
     #@output = a[2]
   end
 
+  def support
+  end
+
   def add_cookies(id)
     if cookies[:saved_products].nil?
       cookies[:saved_products] = JSON.generate([id])
