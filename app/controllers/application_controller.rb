@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !current_user.nil?
+    #TODO redirect_to LOGIN PATH if no current user
+    redirect_to root_path if current_user.nil?
   end
   
 end

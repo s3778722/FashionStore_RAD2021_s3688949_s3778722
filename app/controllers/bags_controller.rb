@@ -1,8 +1,13 @@
 class BagsController < ApplicationController
   before_action :set_bag, only: %i[ show edit update destroy ]
+  before_action :logged_in?
 
   # GET /bags or /bags.json
   def index
+    @bags = Bag.all
+  end
+
+  def cart
     @bags = Bag.all
   end
 
@@ -64,6 +69,6 @@ class BagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bag_params
-      params.require(:bag).permit(:user_id, :quantity)
+      params.require(:bag).permit(:user_id, :quantity, :product_id)
     end
 end

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'category/:id', to: 'categories#display', as: 'category_view'
   get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
   get 'support', to: 'home#support', as: 'support'
+  get 'cart', to: 'bags#cart', as: 'cart'
 
   #get 'home/index'
   root 'home#index'

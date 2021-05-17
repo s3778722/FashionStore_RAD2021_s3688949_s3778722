@@ -1,0 +1,21 @@
+<h1>Cart</h1>
+
+<% @current_user.bags.each do |bag_item| %> 
+
+    <div class="d-flex">
+    <div class="flex-shrink-50">
+        <img src=<%= bag_item.product.images.sample.url %> class="card-img" alt="...">
+    </div>
+    <div class="flex-grow-1 ms-5">
+        <a href="<%=products_view_path(bag_item.id)%>">
+            <p><%= bag_item.product.title %></p>
+            <p>Color:</p>
+            <p>Size:</p>
+            <p>Quantity: <%= bag_item.quantity %></p>
+            <%# %= bag_item.product.product_variants[0].size %> 
+            <p style="margin-top: -10px;">$<%= bag_item.product.price * bag_item.quantity %></p>
+        </a>
+        </div>
+    </div>
+    <hr>
+<% end %>

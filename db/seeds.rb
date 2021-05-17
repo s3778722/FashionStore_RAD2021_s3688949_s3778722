@@ -31,7 +31,6 @@ c3 = Category.create(title: "Kids")
 c4 = Category.create(title: "New")
 
 u1 = User.create(username: "admin1", password: "adminadmin", password_confirmation: "adminadmin", email: "admin1@gmail.com")
-
 p1 = Product.create(title: 'Short Sleeve Knit Polo', desc: 
     "Crafted from light and breathable cotton pique and finished with a classic flat knit collar and two-button placket, the Short Sleeve Knit Polo Shirt by Polo Ralph Lauren is a US patriot's dream. We love the unmistakable pony logo embroidered to the chest for a nod to the brand's sporting heritage.
 
@@ -46,6 +45,8 @@ p1.categories << c1
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo1.jpg")
 p1.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/polo2.jpg")
 p1.product_variants.create(size: "S", color: "Navy")
+p1.product_variants.create(size: "M", color: "Navy")
+p1.product_variants.create(size: "L", color: "Navy")
 
 p2 = Product.create(title: 'Core Stretch Slim Poplin Shirt', desc: 
     "One of the world’s leading designer lifestyle brands, Tommy Hilfiger is the essence of classic American style. Hilfiger’s signature collection was introduced in the mid-‘80s, showcasing long-lasting accessories and time-honoured staples including button-up shirts, chinos and knits expertly modernised with updated fits and details. Recognised internationally for its iconic red, white and blue flag logo, the brand’s relaxed and youthful attitude has remained a distinctive hallmark throughout their collections.
