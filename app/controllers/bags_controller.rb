@@ -69,6 +69,6 @@ class BagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bag_params
-      params.require(:bag).permit(:user_id, :quantity, :product_id)
+      params.require(:bag).permit(:user_id, :quantity, :product_id, :product_variant_id)
     end
 end

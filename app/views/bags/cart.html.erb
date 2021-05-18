@@ -7,10 +7,13 @@
         <img src=<%= bag_item.product.images.sample.url %> class="card-img" alt="...">
     </div>
     <div class="flex-grow-1 ms-5">
-        <a href="<%=products_view_path(bag_item.id)%>">
+        <a href="<%=products_view_path(bag_item.product.id)%>">
             <p><%= bag_item.product.title %></p>
-            <p>Color:</p>
-            <p>Size:</p>
+            <%# To Check if the product variant belongs to the product%> 
+            <% if bag_item.product_variant.product_id == bag_item.product.id %>
+                <p>Color:<%= bag_item.product_variant.color%></p>
+                <p>Size:<%= bag_item.product_variant.size%></p>
+            <% end %>
             <p>Quantity: <%= bag_item.quantity %></p>
             <%# %= bag_item.product.product_variants[0].size %> 
             <p style="margin-top: -10px;">$<%= bag_item.product.price * bag_item.quantity %></p>
