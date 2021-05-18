@@ -22,7 +22,7 @@
     <!--sample to display random collection for a random product -->
     <h1 class="card-title" style = "text-shadow: 1px 1px #000000; "><%= @random_product.collections.sample.title %></h1>
     <h5 class="card-text" style = "text-shadow: 1px 1px #000000;"><%= @random_product.title %></h5>
-    <h5 class="card-text" style = "text-shadow: 1px 1px #000000;">$<%= @random_product.price %></h5>
+    <h5 class="card-text" style = "text-shadow: 1px 1px #000000;"><%=number_to_currency(@random_product.price, :unit => "$") %></h5>
     <form action="/">
       <input type="hidden" name="product_id" value= <%=@random_product.id%>>
       <input class="btn btn-light" type="submit" value="Save">
@@ -48,7 +48,7 @@
         <a href="<%=products_view_path(p.id)%>">
           <img src=<%= p.images.sample.url %> class="card-img " alt="...">
           <p ><%= p.title %></p>
-          <p  style="margin-top: -10px;">$<%= p.price %></p>
+          <p  style="margin-top: -10px;"><%=number_to_currency(p.price, :unit => "$")%></p>
         </a>
       </div>
       <% end %>

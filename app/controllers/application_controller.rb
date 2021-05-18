@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
     #TODO redirect_to LOGIN PATH if no current user
     redirect_to root_path if current_user.nil?
   end
-  
 end

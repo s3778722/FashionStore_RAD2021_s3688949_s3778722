@@ -38,7 +38,7 @@
         <a href="<%=products_view_path(p1.id)%>">
             <img src=<%= p1.images.sample.url %> class="card-img " alt="...">
             <p ><%= p1.title %></p>
-            <p style="margin-top: -10px;">$<%= p1.price %></p>
+            <p style="margin-top: -10px;"><%= number_to_currency(p1.price, :unit => "$") %></p>
         </a>
       </div>
       <% if p2 %> <!--Take care of Odd Number-->
@@ -46,7 +46,7 @@
             <a href="<%=products_view_path(p2.id)%>">
                 <img src=<%= p2.images.sample.url %> class="card-img " alt="...">
                 <p ><%= p2.title %></p>
-                <p style="margin-top: -10px;">$<%= p2.price %></p>
+                <p style="margin-top: -10px;"><%= number_to_currency(p2.price, :unit => "$")%></p>
             </a>
         </div>
       <% end %>
