@@ -32,7 +32,7 @@ class HomeController < ApplicationController
 
   def profile
     if current_user.nil?
-      redirect_to signin_path
+      redirect_to gateway_path
     end
   end
 
