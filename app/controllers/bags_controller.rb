@@ -1,6 +1,7 @@
 class BagsController < ApplicationController
   before_action :set_bag, only: %i[ show edit update destroy ]
   before_action :logged_in?
+  helper_method :checkout
 
   # GET /bags or /bags.json
   def index
@@ -9,6 +10,15 @@ class BagsController < ApplicationController
 
   def cart
     @bags = Bag.all
+  end
+
+  def checkout
+    if request.post?
+      @current_user.bags.where(purchased: 'false').each do |i|
+        i.update(purchased: 'true')
+      end
+    end
+    redirect_to cart_path, notice: 'Transaction succesful'
   end
 
   # GET /bags/1 or /bags/1.json
@@ -69,6 +79,6 @@ class BagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def bag_params
-      params.require(:bag).permit(:user_id, :quantity, :product_id, :product_variant_id)
+      params.require(:bag).permit(:user_id, :quantity, :product_id, :product_variant_id, :purchased)
     end
 end

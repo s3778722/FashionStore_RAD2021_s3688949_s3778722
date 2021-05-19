@@ -1,12 +1,20 @@
 <div class="d-flex flex-row">
   <div class="p-2"><h1>Cart</h1></div>
-  <div class="p-2"><p>(<%= @current_user.bags.count %>)</p></div>
+  <div class="p-2"><p>(<%= @current_user.bags.where(purchased: 'false').count %>)</p></div>
 </div>
+
+<%# Show the notice message%> 
+<% flash.each do |type, msg| %>
+  <br>
+  <div class="alert alert-primary" role="alert">
+    <%= msg %>
+  </div>
+<% end %>
 
 <% total_list = Array.new %>
 <% total_price = 0.00%>
 
-<% @current_user.bags.each do |bag_item| %> 
+<% @current_user.bags.where(purchased: 'false').each do |bag_item| %> 
 
     <div class="d-flex">
     <div class="flex-shrink-50">
@@ -38,3 +46,4 @@
 <h5>Tax: <%= number_to_currency(tax, :unit => "$")%></h5>
 <h5>Sub-total: <%= number_to_currency(subtotal, :unit => "$") %></h5>
 <h1>Total: <%= number_to_currency(total_price, :unit => "$") %></h1>
+<%= button_to 'Checkout', checkout_path, method: :post %>

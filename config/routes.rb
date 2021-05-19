@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
   get 'support', to: 'home#support', as: 'support'
   get 'cart', to: 'bags#cart', as: 'cart'
+  post 'cart/checkout', to: 'bags#checkout', as: 'checkout'
 
   #get 'home/index'
   root 'home#index'
