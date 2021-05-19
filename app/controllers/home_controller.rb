@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i 
 
   def index
@@ -26,6 +25,15 @@ class HomeController < ApplicationController
   end
 
   def support
+  end
+
+  def gateway
+  end
+
+  def profile
+    if current_user.nil?
+      redirect_to signin_path
+    end
   end
 
   def add_cookies(id)
