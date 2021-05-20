@@ -1,23 +1,56 @@
 <p id="notice"><%= notice %></p>
 
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+     <% @product.images.each_with_index do |p, index| %>
+       <% if index == 0 %>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index %>" class="active" aria-current="true" aria-label="Slide <%=index %>"></button>
+         <% else %>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index %>" aria-label="Slide <%=index %>"></button>
+       <% end %>  
+      <% end %>
+  </div>
+  <div class="carousel-inner">
+    <% @product.images.each_with_index do |p, index| %>
+      <% if index == 0 %>
+        <div class="carousel-item-actve">
+          <img src="<%= p.url %>" class="d-block w-100" alt="...">
+        </div>
+      <% else %>
+        <div class="carousel-item">
+          <img src="<%= p.url %>" class="d-block w-100" alt="...">
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
 <p>
   <strong>Id:</strong>
   <%= @product.id %>
 </p>
 
-<p>
-  <strong>Title:</strong>
+<h3 style='font-weight:bold;'>
   <%= @product.title %>
-</p>
+</h3>
 
-<p>
-  <strong>Desc:</strong>
+<h4>
+  $<%= @product.price %>
+</h4>
+
+<p style='font-style:italic'>
   <%= @product.desc %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
 </p>
 
 <p>
@@ -29,6 +62,7 @@
   <strong>Popularity:</strong>
   <%= @product.popularity %>
 </p>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
