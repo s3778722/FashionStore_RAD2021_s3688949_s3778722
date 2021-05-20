@@ -34,7 +34,10 @@
   </button>
 </div>
 
-
+<form action="/">
+      <input type="hidden" name="product_id" value= <%=@product.id%>>
+      <input class="btn btn-light" type="submit" value="Save">
+</form>
 
 <p>
   <strong>Id:</strong>
@@ -63,6 +66,13 @@
   <%= @product.popularity %>
 </p>
 
+<hr>
+
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
+<br>
+<br>
+<br>
+<br>
