@@ -14,12 +14,14 @@ class BagsController < ApplicationController
   end
 
   def checkout
-    if request.post?
+    if @current_user.bags.where(purchased: 'false').count == 0
+      redirect_to cart_path, notice: 'Bag is empty'
+    elsif request.post?
       @current_user.bags.where(purchased: 'false').each do |i|
         i.update(purchased: 'true')
       end
+      redirect_to cart_path, notice: 'Transaction successful'
     end
-    redirect_to cart_path, notice: 'Transaction succesful'
   end
 
   # GET /bags/1 or /bags/1.json

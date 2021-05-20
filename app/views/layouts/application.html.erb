@@ -26,6 +26,7 @@
   <body>
     <%= render 'header/header' unless @hide_header %>
     <%= yield %>
-    <%= render 'footer/footer' %>
-    
+    <div class="container">
+      <%= render 'footer/footer' %>
+    </div>
 </html>

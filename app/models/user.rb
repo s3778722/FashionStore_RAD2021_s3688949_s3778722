@@ -7,5 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false },
     format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }
     
-  validates :password, presence: true, length: { minimum: 8, maximum: 20}, format: { with: /\A[a-zA-Z0-9]*\z/ }
+  validates :password, presence: true, length: { minimum: 8, maximum: 20}, format: { with: /\A[a-zA-Z0-9]*\z/ }, on: :create
+  validates :password, presence: true, length: { minimum: 8, maximum: 20}, format: { with: /\A[a-zA-Z0-9]*\z/ }, allow_blank: true, on: :update
+
 end

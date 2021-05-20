@@ -1,0 +1,38 @@
+<% @hide_header = true  %>
+
+<div class="container" style="margin-bottom:50px">
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @current_user %>
+        <%= @current_user.username %>
+      </h1>
+    </section>
+  </aside>
+</div>
+<hr>
+<% if current_user %>
+  <p> Logged in as: </p>
+  <p> Email: <%= current_user.email %></p>
+  <p> Username: <%= current_user.username %></p>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Sign In", signin_path %>
+<% end %>
+<hr>
+<div class="d-flex flex-column">
+  <div class="d-flex justify-content-center" style="margin-top:25px">
+    <h5><%= link_to "Pending orders", cart_path, {:style=>'text-decoration: none;' 'font-size: 25px'} %></h5>
+  </div>
+  <div class="d-flex justify-content-center" style="margin-top:25px">
+    <h5><%= link_to "Update login details", edit_user_path(@current_user.id), {:style=>'text-decoration: none;' 'font-size: 25px'} %></h5>
+  </div>
+  <div class="d-flex justify-content-center" style="margin-top:25px">
+    <h5><%= link_to "Subscription", cart_path, {:style=>'text-decoration: none;' 'font-size: 25px'} %></h5>
+  </div>
+  <hr>
+    <div class="d-flex justify-content-center" style="margin-top:25px">
+    <h5><%= link_to "Sign Out", signout_path, {:style=>'text-decoration: none;' 'font-size: 25px'} %></h5>
+  </div>
+</div>

@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   def edit
   end
 
+
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
@@ -67,4 +68,5 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
 
     end
+
 end
