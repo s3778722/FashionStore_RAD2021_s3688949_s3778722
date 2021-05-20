@@ -61,15 +61,14 @@
     <div class="text-center">
       <div class-"row">
         <div class="input-group">
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <select class="form-select form-select-lg mb-3" name="size" id="size"  aria-label=".form-select-lg example">
             <% @product.product_variants.each.map(&:size).uniq.each do |u| %>
-           <option name="bag[size]" id="bag_size" value="<%=u %>"><%= u %></option>
+           <option value="<%=u %>"><%= u %></option>
            <% end %>
           </select>
-        
-          <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
+          <select class="form-select form-select-lg mb-3" name="color" id="color" style="margin-left:-1px" aria-label=".form-select-lg example">
             <% @product.product_variants.each.map(&:color).uniq.each do |u| %>
-           <option name="bag[color]" id="bag_color" value="<%=u %>"><%= u %></option>
+           <option value="<%=u %>"><%= u %></option>
            <% end %>
           </select>
           

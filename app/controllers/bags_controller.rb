@@ -37,7 +37,12 @@ class BagsController < ApplicationController
 
   # POST /bags or /bags.json
   def create
-    @bag = Bag.new(bag_params)
+    bag_params1 = bag_params
+    
+    pr = Product.find(bag_params1[:product_id])
+
+    bag_params1[:product_variant_id] = pr.product_variants.find_by(size: params[:size], color: params[:color]).id
+    @bag = Bag.new(bag_params1)
 
     respond_to do |format|
       if @bag.save
