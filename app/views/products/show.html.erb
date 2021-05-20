@@ -56,6 +56,43 @@
   <%= @product.desc %>
 </p>
 
+<hr>
+  <div class="text-center">
+      <form style="display:table">
+        <div class-"row">
+          <div class="input-group">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+              <% @product.product_variants.each.map(&:size).uniq.each do |u| %>
+             <option value="1"><%= u %></option>
+             <% end %>
+            </select>
+          
+            <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
+              <% @product.product_variants.each.map(&:color).uniq.each do |u| %>
+             <option value="1"><%= u %></option>
+             <% end %>
+            </select>
+            
+            <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="3">Four</option>
+              <option value="3">Five</option>
+              <option value="3">Six</option>
+              <option value="3">Seven</option>
+              <option value="3">Eight</option>
+              <option value="3">Nine</option>
+              <option value="3">Ten</option>
+            </select>
+          </drv>
+          <br>
+        </div>
+        <button type="button" class="btn btn-dark">Add to bag</button>
+      </form>
+  </div>
+<hr>
+
 <p>
   <strong>Date stocked:</strong>
   <%= @product.date_stocked %>
@@ -66,7 +103,8 @@
   <%= @product.popularity %>
 </p>
 
-<hr>
+<%=@product.product_variants.size %>
+
 
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
