@@ -57,40 +57,49 @@
 </p>
 
 <hr>
-  <div class="text-center">
-      <form style="display:table">
-        <div class-"row">
-          <div class="input-group">
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-              <% @product.product_variants.each.map(&:size).uniq.each do |u| %>
-             <option value="1"><%= u %></option>
-             <% end %>
-            </select>
+  <form action="/bags" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+    <div class="text-center">
+      <div class-"row">
+        <div class="input-group">
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <% @product.product_variants.each.map(&:size).uniq.each do |u| %>
+           <option name="bag[size]" id="bag_size" value="<%=u %>"><%= u %></option>
+           <% end %>
+          </select>
+        
+          <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
+            <% @product.product_variants.each.map(&:color).uniq.each do |u| %>
+           <option name="bag[color]" id="bag_color" value="<%=u %>"><%= u %></option>
+           <% end %>
+          </select>
           
-            <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
-              <% @product.product_variants.each.map(&:color).uniq.each do |u| %>
-             <option value="1"><%= u %></option>
-             <% end %>
-            </select>
-            
-            <select class="form-select form-select-lg mb-3" style="margin-left:-1px" aria-label=".form-select-lg example">
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="3">Four</option>
-              <option value="3">Five</option>
-              <option value="3">Six</option>
-              <option value="3">Seven</option>
-              <option value="3">Eight</option>
-              <option value="3">Nine</option>
-              <option value="3">Ten</option>
-            </select>
-          </drv>
-          <br>
-        </div>
-        <button type="button" class="btn btn-dark">Add to bag</button>
-      </form>
-  </div>
+          <select class="form-select form-select-lg mb-3" type="number" name="bag[quantity]" id="bag_quantity" style="margin-left:-1px" aria-label=".form-select-lg example">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=7>7</option>
+            <option value=8>8</option>
+            <option value=9>9</option>
+            <option value=10>10</option>
+          </select>
+          
+          <input type="hidden" name="bag[purchased]" id="bag_purchased" value="false">
+          <input type="hidden" name="bag[product_id]" id="bag_product_id" value=<%= @product.id %>>
+          <input type="hidden" name="bag[product_variant_id]" id="bag_product_variant_id" value=3>
+          
+          <% if current_user %>
+          <input type="hidden" name="bag[user_id]" id="bag_user_id" value="<%= current_user.id %>">
+          <% end %>
+          
+        </drv>
+        <br>
+      </div>
+      <input type="submit" class="btn btn-dark" value="Add to bag"></button>
+      </div>
+  </form>
 <hr>
 
 <p>

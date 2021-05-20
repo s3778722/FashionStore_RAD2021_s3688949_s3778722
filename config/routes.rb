@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'products/popular', to: 'products#popular', as: 'popular'
   get 'products/all', to: 'products#all', as: 'all'
   get 'products/:id', to: 'products#show', as: 'products_view'
+  get 'products/:id/', to: 'products#add_to_bag
+  ', as: 'products_add_to_bag'
   get 'category/:id', to: 'categories#display', as: 'category_view'
   get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
   get 'support', to: 'home#support', as: 'support'
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   get 'gateway', to: 'home#gateway', as: 'gateway'
   get 'profile', to: 'home#profile', as: 'profile'
   post 'cart/checkout', to: 'bags#checkout', as: 'checkout'
+  post 'bags', to: 'bags#create', as: 'bags_create'
 
   #get 'home/index'
   root 'home#index'
