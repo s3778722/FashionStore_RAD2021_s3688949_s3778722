@@ -13,6 +13,10 @@ class HomeController < ApplicationController
     end
 
     if params.include?(:address)
+      user = User.find_by(email: params[:address])
+      if user
+        user.update(subscribed: true)
+      end
       puts "working"
       newsletter_signup(params[:address])
     end
