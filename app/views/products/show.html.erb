@@ -1,27 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
      <% @product.images.each_with_index do |p, index| %>
-       <% if index == 0 %>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index %>" class="active" aria-current="true" aria-label="Slide <%=index %>"></button>
-         <% else %>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index %>" aria-label="Slide <%=index %>"></button>
-       <% end %>  
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=index %>" class="<%= index == 0 ? 'active' : '' %>" aria-current="true" aria-label="Slide <%=index %>"></button>
       <% end %>
   </div>
   <div class="carousel-inner">
-    <% @product.images.each_with_index do |p, index| %>
-      <% if index == 0 %>
-        <div class="carousel-item-actve">
-          <img src="<%= p.url %>" class="d-block w-100" alt="...">
-        </div>
-      <% else %>
-        <div class="carousel-item">
-          <img src="<%= p.url %>" class="d-block w-100" alt="...">
-        </div>
-      <% end %>
+    <% @product.images.each.with_index(0) do |post, index| %>
+      <div class="carousel-item <%= index.zero? ? 'active' : '' %>">
+        <%= link_to post.url do %>
+          <%= image_tag(post.url, class: 'd-block w-100 img-fluid') %>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -35,21 +26,16 @@
 </div>
 
 <form action="/">
-      <input type="hidden" name="product_id" value= <%=@product.id%>>
-      <input class="btn btn-light" type="submit" value="Save">
+    <input type="hidden" name="product_id" value= <%=@product.id%>>
+    <input class="btn btn-light" type="submit" value="Save">
 </form>
-
-<p>
-  <strong>Id:</strong>
-  <%= @product.id %>
-</p>
 
 <h3 style='font-weight:bold;'>
   <%= @product.title %>
 </h3>
 
 <h4>
-  $<%= @product.price %>
+  <%= number_to_currency(@product.price, :unit => "$")%>
 </h4>
 
 <p style='font-style:italic'>
@@ -59,7 +45,7 @@
 <hr>
   <form action="/bags" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
     <div class="text-center">
-      <div class-"row">
+      <div class="row">
         <div class="input-group">
           <select class="form-select form-select-lg mb-3" name="size" id="size"  aria-label=".form-select-lg example">
             <% @product.product_variants.each.map(&:size).uniq.each do |u| %>
@@ -88,37 +74,14 @@
           <input type="hidden" name="bag[purchased]" id="bag_purchased" value="false">
           <input type="hidden" name="bag[product_id]" id="bag_product_id" value=<%= @product.id %>>
           <input type="hidden" name="bag[product_variant_id]" id="bag_product_variant_id" value=3>
-          
           <% if current_user %>
           <input type="hidden" name="bag[user_id]" id="bag_user_id" value="<%= current_user.id %>">
           <% end %>
-          
-        </drv>
+        </div>
         <br>
       </div>
       <input type="submit" class="btn btn-dark" value="Add to bag"></button>
       </div>
   </form>
 <hr>
-
-<p>
-  <strong>Date stocked:</strong>
-  <%= @product.date_stocked %>
-</p>
-
-<p>
-  <strong>Popularity:</strong>
-  <%= @product.popularity %>
-</p>
-
-<%=@product.product_variants.size %>
-
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
-
-<br>
-<br>
-<br>
 <br>
