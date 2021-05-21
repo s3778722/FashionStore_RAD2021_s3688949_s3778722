@@ -70,12 +70,14 @@
             <option value=9>9</option>
             <option value=10>10</option>
           </select>
-          
+
           <input type="hidden" name="bag[purchased]" id="bag_purchased" value="false">
           <input type="hidden" name="bag[product_id]" id="bag_product_id" value=<%= @product.id %>>
           <input type="hidden" name="bag[product_variant_id]" id="bag_product_variant_id" value=3>
           <% if current_user %>
           <input type="hidden" name="bag[user_id]" id="bag_user_id" value="<%= current_user.id %>">
+          <% else %>
+            <% session[:tmp_cart_pid] = @product.id %>
           <% end %>
         </div>
         <br>
