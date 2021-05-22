@@ -76,12 +76,12 @@
   </div>
   <div class="row">
       <div class="col">
-        <a href="/category/4">
+        <a href="/category/new-arrivals">
         <div class="card text-white m-1">
         <img class="card-img" src="https://rad-product-img.s3.us-east-2.amazonaws.com/pexels-creative-hussain-2774197.jpg" alt="Card image">
           <div class="card-img-overlay h-100 d-flex flex-column">
             <h4 class="card-title">NEW ARRIVALS</h4>
-            <p class="card-text"><%=Category.find(4).products.count %> Items </p>
+            <p class="card-text"><%=@products = Product.where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).count %> Items </p>
           </div>
         </div>
         </a>

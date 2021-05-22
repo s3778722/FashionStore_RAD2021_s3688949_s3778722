@@ -8,7 +8,7 @@
             <li><a class="dropdown-item" href="/category/2">Women</a></li>
             <li><a class="dropdown-item" href="/category/1">Men</a></li>
             <li><a class="dropdown-item" href="/category/3">Kids</a></li>
-            <li><a class="dropdown-item" href="/category/4">New</a></li>
+            <li><a class="dropdown-item" href="/category/new-arrivals">New</a></li>
         </ul>
     </div>
       <div class="dropdown">
@@ -33,7 +33,6 @@
       <!--Show two popular product in descending order-->
       <% @products.in_groups_of(2) do |p1, p2| %>
         <% if p1.category_ids.include? @category.id %>
-        <% puts @category_id %>
         <div class="row">
         <div class="col-6">
           <a href="<%=products_view_path(p1.id)%>">

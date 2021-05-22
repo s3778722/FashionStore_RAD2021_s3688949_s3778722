@@ -10,6 +10,10 @@ class CategoriesController < ApplicationController
   def show
   end
   
+  def new_arrivals
+    @products = Product.where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight)
+  end
+  
   def display
     @category = Category.find(params[:id])
     @products = Product.all

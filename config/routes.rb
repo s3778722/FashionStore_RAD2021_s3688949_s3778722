@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'products/:id', to: 'products#show', as: 'products_view'
   get 'products/:id/', to: 'products#add_to_bag
   ', as: 'products_add_to_bag'
+  get 'category/new-arrivals', to: 'categories#new_arrivals', as: 'category_new_arrivals_view'
   get 'category/:id', to: 'categories#display', as: 'category_view'
   get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
   get 'support', to: 'home#support', as: 'support'
