@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_100413) do
+ActiveRecord::Schema.define(version: 2021_05_22_175024) do
 
   create_table "bags", force: :cascade do |t|
     t.integer "user_id"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_100413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "subscribed", default: false
+    t.string "login_token"
+    t.datetime "token_generated_at"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   get 'edit/login', to: 'users#edit_profile', as: 'edit_login'
   post 'cart/checkout', to: 'bags#checkout', as: 'checkout'
   post 'bags', to: 'bags#create', as: 'bags_create'
-  
+  get 'forget-password', to: 'users#forget_password', as: 'forget_password_get'
+  post 'forget-password', to: 'users#forget_password', as: 'forget_password_post'
+  get '/login/:username/:token', to: 'sessions#login'
   get '/auth/twitter/callback', to: 'sessions#twitter'
 
   #get 'home/index'

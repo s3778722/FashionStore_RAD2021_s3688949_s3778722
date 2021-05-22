@@ -13,6 +13,23 @@ class SessionsController < ApplicationController
     end
   end
   
+  # This is for "Forgot Password" authentication.
+  def login
+    token = params[:token].to_s
+    username = params[:username] 
+    user = User.find_by(username: username)
+    if !user || (user.login_token != token)
+      redirect_to root_path, notice: 'It seems your link is invalid. Try requesting for a new login link'
+    elsif Time.now.utc > (user.token_generated_at + 2.hours)
+      redirect_to root_path, notice: 'Your login link has been expired. Try requesting for a new login link.'
+    else
+      user.login_token = nil
+      user.save
+      session[:user_id] = user.id
+      redirect_to root_path, notice: 'You have been signed in!'
+    end
+  end
+
   def twitter
     p = User.find_by_username(auth.info.screen_name)
     if p

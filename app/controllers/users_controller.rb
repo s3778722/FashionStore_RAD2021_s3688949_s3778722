@@ -48,6 +48,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def forget_password
+    if params.include?(:forget_pw_username) && params.include?(:email_to_receive)
+      user = User.find_by(username: params[:forget_pw_username])
+      if user
+        user.login_token = create_token
+        user.token_generated_at = Time.now.utc
+        user.save
+        #Used a email that we have accessed to, instead of the user's email in real life situation
+        LoginTokenMailer.send_email(params[:email_to_receive], user.login_token, user.username).deliver
+        redirect_to(root_path, :notice => 'Sent Temporary Login Link')
+      else
+        redirect_to forget_password_get_path, notice: 'Username not found'
+      end
+    end
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
@@ -69,4 +85,11 @@ class UsersController < ApplicationController
 
     end
 
+    def create_token
+      SecureRandom.hex(10)
+    end
+
+    def token_validity
+      2.hours
+    end
 end
