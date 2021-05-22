@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'cart', to: 'bags#cart', as: 'cart'
   get 'gateway', to: 'home#gateway', as: 'gateway'
   get 'profile', to: 'home#profile', as: 'profile'
+  get 'subscribe', to: 'home#subscribe', as: 'subscribe'
+  get 'unsubscribe', to: 'home#unsubscribe', as: 'unsubscribe'
   get 'edit/login', to: 'users#edit_profile', as: 'edit_login'
   post 'cart/checkout', to: 'bags#checkout', as: 'checkout'
   post 'bags', to: 'bags#create', as: 'bags_create'

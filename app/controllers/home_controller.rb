@@ -84,10 +84,28 @@ class HomeController < ApplicationController
     email =~ VALID_EMAIL_REGEX
   end
 
+  def subscribe
+    user = User.find(current_user.id)
+    if user
+      #change the db subscription to true
+      user.update(subscribed: true)
+      newsletter_signup(current_user.email)
+    end
+  end
+
+  def unsubscribe
+    user = User.find(current_user.id)
+    if user
+      #change the db subscription to false
+      user.update(subscribed: false)
+      redirect_to root_path
+    end
+  end
+
   def newsletter_signup(address)
     if (is_valid_email?(address))
       NewsletterMailer.send_email(address).deliver
-      redirect_to("/", :notice => 'Sent email')
+      redirect_to("/", :notice => 'Subscribed! Sent email')
     else
       redirect_to("/", :notice => 'Not a valid email address')
     end

@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'mini_magick', '~> 4.8'
 
 # use omniauth for twitter login
-gem 'omniauth-twitter' , '~> 1.4'
+gem 'omniauth-twitter', '~> 1.4'
 gem "omniauth-rails_csrf_protection"
 
 # Use Capistrano for deployment
