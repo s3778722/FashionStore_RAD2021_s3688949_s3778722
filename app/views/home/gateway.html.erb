@@ -14,7 +14,7 @@ body {
 
 <div class="d-grid gap-2" style = "margin-top:60px">
   <a class="btn btn-dark" href="/signin" role="button">Login</a>
-  <a class="btn btn-light" href=""role="button">Login with Twitter</a>
+  <%= button_to "Login with twitter", "/auth/twitter", method: :post, class:"btn btn-light"%>
 </div>
 
 <p class="text-center" style="color:white; font-size:20px; margin-top:100px">__________</p>

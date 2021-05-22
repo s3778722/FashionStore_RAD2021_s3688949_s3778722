@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'edit/login', to: 'users#edit_profile', as: 'edit_login'
   post 'cart/checkout', to: 'bags#checkout', as: 'checkout'
   post 'bags', to: 'bags#create', as: 'bags_create'
+  
+  get '/auth/twitter/callback', to: 'sessions#twitter'
 
   #get 'home/index'
   root 'home#index'

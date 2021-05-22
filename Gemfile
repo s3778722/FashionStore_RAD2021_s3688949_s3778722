@@ -33,6 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# use omniauth for twitter login
+gem 'omniauth-twitter' , '~> 1.4'
+gem "omniauth-rails_csrf_protection"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
