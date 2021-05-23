@@ -116,3 +116,25 @@ p4.product_variants.create(size: "L", color: "White")
 p4.product_variants.create(size: "S", color: "Black")
 p4.product_variants.create(size: "M", color: "Black")
 p4.product_variants.create(size: "L", color: "Black")
+
+p5 = Product.create(title: 'Smock Mini Dress', desc: 
+    "Epitomising endless summer, Sydney label AERE offers more sustainable wardrobe staples in neutral hues and time-honoured fits. From women’s sun dresses and cropped blouses to button-ups and relaxed trousers for the boys, an AERE piece is an investment in the effortlessness of minimalist style.
+
+    Our model is 177.8cm (5’10”) tall with a 81.3cm (32”) bust, a 68.6cm (27”) waist and 92.7cm (36.5”) hips.
+    
+    - Pure woven linen; lightweight with minimal stretch
+    - Buttoned V-neck collar with ruffle detail
+    - Tiered ruffles
+    - Relaxed sleeves
+    - Lined", price: 129.00, date_stocked: DateTime.new(2021, 1, 30), popularity: 1)
+p5.collections.create(title: "Dresses")
+p5.collections.create(title: "Premium")
+p5.collections.create(title: "Summer")
+p5.categories << c2
+p5.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SmockMiniDress.jpg")
+p5.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SmockMiniDress2.jpg")
+p5.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SmockMiniDress3.jpg")
+p5.product_variants.create(size: "S", color: "Pink")
+p5.product_variants.create(size: "M", color: "Pink")
+
+
