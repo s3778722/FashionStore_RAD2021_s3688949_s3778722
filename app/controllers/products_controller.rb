@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
@@ -16,6 +17,12 @@ class ProductsController < ApplicationController
   end
   
   def all
+    @products = Product.all
+  end
+  
+  def all_filter
+    @filter = params
+    logger.info (@filter[:collection[0]])
     @products = Product.all
   end
 

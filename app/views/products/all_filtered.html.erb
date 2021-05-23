@@ -53,26 +53,27 @@
 <div id="myFilter" class="sidebar" style="position: absolute; width:100%; left:100%; height:100%">
   <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">×</a>
   <h3 style="text-align: center; color: white">Filters</h1>
-  <form action="all/filter" accept-charset="UTF-8" method="post">
+  
+  <form action="all/filter" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
   
     &nbsp<h1 style="color: white">Collections</h1>
     
     <p style="">Selected</p>
-    <% Collection.all.each.map(&:title).uniq.each_with_index do |c, index| %>
+    <% Collection.all.each.map(&:title).uniq.each do |c| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
     <% end %>
     &nbsp<h1 style="color: white">Colors</h1>
-    <% ProductVariant.all.each.map(&:color).uniq.each_with_index do |d, index| %>
+    <% ProductVariant.all.each.map(&:color).uniq.each do |d| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="color[<%=index %>" id="<%=d %>" data-on="<%=d %>" data-off="<%=d %>" value="<%=d %>">
     <% end %>
     <p style="">Selected</p>
     &nbsp<h1 style="color: white">Sizes</h1>
-    <% ProductVariant.all.each.map(&:size).uniq.each_with_index do |s, index| %>
+    <% ProductVariant.all.each.map(&:size).uniq.each do |s| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size[<%=index %>" id="<%=s %>" data-on="<%=s %>" data-off="<%=s %>" value="<%=s %>">
     <% end %>
     <p style="">Selected</p>
     <hr>
-    &nbsp<button type="Submit" class="btn btn-light" style="text-align: center;">Save Filter</button>
+    &nbsp<button class="btn btn-light" style="text-align: center;">Save Filter</button>
   </form>
 </div>
 

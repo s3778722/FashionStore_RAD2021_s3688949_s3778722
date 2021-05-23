@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'products/popular', to: 'products#popular', as: 'popular'
   get 'products/all', to: 'products#all', as: 'all'
+  post 'products/all/filter', to: 'products#all_filter', as: 'all_filter'
   get 'products/:id', to: 'products#show', as: 'products_view'
   get 'products/:id/', to: 'products#add_to_bag
   ', as: 'products_add_to_bag'
