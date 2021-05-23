@@ -59,21 +59,21 @@
     &nbsp<h1 style="color: white">Collections</h1>
     
     <p style="">Selected</p>
-    <% Collection.all.each.map(&:title).uniq.each do |c| %>
+    <% Collection.all.each.map(&:title).uniq.each_with_index do |c, index| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
     <% end %>
     &nbsp<h1 style="color: white">Colors</h1>
-    <% ProductVariant.all.each.map(&:color).uniq.each do |d| %>
+    <% ProductVariant.all.each.map(&:color).uniq.each_with_index do |d, index| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="color[<%=index %>" id="<%=d %>" data-on="<%=d %>" data-off="<%=d %>" value="<%=d %>">
     <% end %>
     <p style="">Selected</p>
     &nbsp<h1 style="color: white">Sizes</h1>
-    <% ProductVariant.all.each.map(&:size).uniq.each do |s| %>
+    <% ProductVariant.all.each.map(&:size).uniq.each_with_index do |s, index| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size[<%=index %>" id="<%=s %>" data-on="<%=s %>" data-off="<%=s %>" value="<%=s %>">
     <% end %>
     <p style="">Selected</p>
     <hr>
-    &nbsp<button class="btn btn-light" style="text-align: center;">Save Filter</button>
+    &nbsp<button type="Submit" class="btn btn-light" style="text-align: center;">Save Filter</button>
   </form>
 </div>
 
