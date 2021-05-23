@@ -35,10 +35,7 @@ class ProductsController < ApplicationController
       end
     end
     if @filter[:size]
-      sizeArray = Array.new
-      @filter[:size].each do |s|
-        sizeArray << s[1]
-      end
+      sizeArray = @filter[:size]
     end
     
     @products = Product.all
