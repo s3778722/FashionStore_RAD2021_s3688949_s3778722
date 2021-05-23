@@ -209,3 +209,46 @@ p9.product_variants.create(size: "L", color: "Peach")
 p9.product_variants.create(size: "S", color: "White")
 p9.product_variants.create(size: "M", color: "White")
 p9.product_variants.create(size: "L", color: "White")
+
+p10 = Product.create(title: 'Youth Martha Long Sleeve T Shirt', desc: 
+    "Founded in 1994, US-based brand DC Shoes has catapulted from a performance skateboard footwear label to a globally recognised brand. Deeply rooted in the American skate culture, DC Shoes offers an array of skate apparel with a distinct urban appeal. Regarded highly by countless world-class athletes, DC Shoes is both symbolic and cutting edge.
+    
+    -100% Cotton
+    -Fabric: Thick pure cotton flannel fabric
+    -Fit: Comfortable regular fit
+    -Closure/Neck: Button down collar
+    -Chest pockets with button closure
+    -Lightly brushed for softness", price: 47.99, date_stocked: DateTime.new(2020, 10, 14), popularity: 1)
+p10.collections.create(title: "Long Sleeves")
+p10.collections.create(title: "Premium")
+p10.categories << c3
+p10.images.create(url: "https://kevymusicapp.s3.amazonaws.com/dc1.jpg")
+p10.images.create(url: "https://kevymusicapp.s3.amazonaws.com/dc2.jpg")
+p10.images.create(url: "https://kevymusicapp.s3.amazonaws.com/dc3.jpg")
+p10.product_variants.create(size: "S", color: "Black")
+p10.product_variants.create(size: "M", color: "Black")
+p10.product_variants.create(size: "L", color: "Black")
+
+p11 = Product.create(title: 'Youth Martha Long Sleeve T Shirt', desc: 
+    "Set to be your weekend go-to, the A Brand A High Skinny Ankle Basher Jeans have a flattering high-rise cut. Distressed patches lend the pair a cool, lived-in aesthetic.
+
+    Length: Inside Leg: 70cm; Front Rise: 26cm; Leg Opening: 24cm (size AU 8). Our model is 174.0cm (5’8.5”) tall with a 81.3cm (32”) bust, a 63.5cm (25”) waist and 94.0cm (37”) hips.
+
+    - Cotton-rich denim with stretch
+    - Fitted design; high-waisted
+    - Black wash
+    - Zip fly; belt loops
+    - Classic five pocket design
+    - Distressed patches", price: 129.95, date_stocked: DateTime.new(2020, 5, 22), popularity: 1)
+p11.collections.create(title: "Pants")
+p11.collections.create(title: "Jeans")
+p11.categories << c2
+p11.images.create(url: "https://kevymusicapp.s3.amazonaws.com/jeans.jpg")
+p11.images.create(url: "https://kevymusicapp.s3.amazonaws.com/jeans2.jpg")
+p11.images.create(url: "https://kevymusicapp.s3.amazonaws.com/jeans3.jpg")
+p11.product_variants.create(size: "S", color: "Black")
+p11.product_variants.create(size: "M", color: "Black")
+p11.product_variants.create(size: "L", color: "Black")
+p11.product_variants.create(size: "S", color: "Blue")
+p11.product_variants.create(size: "M", color: "Blue")
+p11.product_variants.create(size: "L", color: "Blue")
