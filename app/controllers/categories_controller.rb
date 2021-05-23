@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
@@ -12,6 +13,59 @@ class CategoriesController < ApplicationController
   
   def new_arrivals
     @products = Product.where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight)
+  end
+  
+  def display_filter
+    @category = Category.find(params[:id])
+    @filter = params
+    if @filter[:collection]
+      collectionArray = Array.new
+      @filter[:collection].each do |e|
+        collectionArray << e[1]
+      end
+    end
+    if @filter[:color]
+      colorArray = Array.new
+      @filter[:color].each do |c|
+        colorArray << c[1]
+      end
+    end
+    if @filter[:size]
+      sizeArray = Array.new
+      @filter[:size].each do |s|
+        sizeArray << s[1]
+      end
+    end
+    
+    @products = Product.all
+    
+    if @filter[:collection] && @filter[:color] && @filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+    end
+    
+    if @filter[:collection] && @filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray}).uniq
+    end
+    
+    if @filter[:collection] && @filter[:size] && !@filter[:color]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {size: sizeArray}).uniq
+    end
+    
+    if @filter[:size] && @filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+    end
+    
+    if @filter[:collection] && !@filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections).where(collections: {title: collectionArray}).uniq
+    end
+    
+    if @filter[:color] && !@filter[:size] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray}).uniq
+    end
+    
+    if @filter[:size] && !@filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {size: sizeArray}).uniq
+    end
   end
   
   def display
