@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   ', as: 'products_add_to_bag'
   get 'category/new-arrivals', to: 'categories#new_arrivals', as: 'category_new_arrivals_view'
   get 'category/:id', to: 'categories#display', as: 'category_view'
+  post 'category/:id/filter', to: 'categories#display_filter', as: 'category_display_filter'
   get 'saved-list', to: 'favourites#saved_list', as: 'saved_list'
   get 'support', to: 'home#support', as: 'support'
   get 'cart', to: 'bags#cart', as: 'cart'

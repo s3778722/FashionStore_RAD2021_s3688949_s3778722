@@ -22,8 +22,54 @@ class ProductsController < ApplicationController
   
   def all_filter
     @filter = params
-    logger.info (@filter[:collection[0]])
+    if @filter[:collection]
+      collectionArray = Array.new
+      @filter[:collection].each do |e|
+        collectionArray << e[1]
+      end
+    end
+    if @filter[:color]
+      colorArray = Array.new
+      @filter[:color].each do |c|
+        colorArray << c[1]
+      end
+    end
+    if @filter[:size]
+      sizeArray = Array.new
+      @filter[:size].each do |s|
+        sizeArray << s[1]
+      end
+    end
+    
     @products = Product.all
+    
+    if @filter[:collection] && @filter[:color] && @filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+    end
+    
+    if @filter[:collection] && @filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray}).uniq
+    end
+    
+    if @filter[:collection] && @filter[:size] && !@filter[:color]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {size: sizeArray}).uniq
+    end
+    
+    if @filter[:size] && @filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+    end
+    
+    if @filter[:collection] && !@filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections).where(collections: {title: collectionArray}).uniq
+    end
+    
+    if @filter[:color] && !@filter[:size] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray}).uniq
+    end
+    
+    if @filter[:size] && !@filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {size: sizeArray}).uniq
+    end
   end
 
   # GET /products/new
