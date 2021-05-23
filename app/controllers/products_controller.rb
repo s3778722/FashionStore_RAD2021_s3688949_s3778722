@@ -21,9 +21,9 @@ class ProductsController < ApplicationController
   end
   
   def search
-    search_term = params[:term]
+    search_term = params[:term].downcase
     @products = Product.all
-    @products = Product.joins(:product_variants).where('title like ?', "%#{search_term}%").or(Product.joins(:product_variants).where('product_variants.color like ?', "%#{search_term}%")).uniq
+    @products = Product.joins(:product_variants).where('lower(title) like ?', "%#{search_term}%").or(Product.joins(:product_variants).where('lower(product_variants.color) like ?', "%#{search_term}%")).uniq
   end
   
   def all_filter
