@@ -2,110 +2,192 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <div style="margin-top:-20px;" class="d-flex justify-content-between">
-    <div class="dropdown">
-        <button class="btn btn dropdown-toggle" style="font-size: 20px;" 
-        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        All
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/category/2">Women</a></li>
-            <li><a class="dropdown-item" href="/category/1">Men</a></li>
-            <li><a class="dropdown-item" href="/category/3">Kids</a></li>
-            <li><a class="dropdown-item" href="/category/new-arrivals">New</a></li>
-        </ul>
-    </div>
-      <div class="dropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link">
-              <img onclick="openFilter()" src="/menu-btn.svg" alt="">
-            </a>
-          </li>
-        </ul>
-    </div>
+  <div class="dropdown">
+    <button class="btn btn dropdown-toggle" style="font-size: 20px;" type="button" id="dropdownMenuButton1"
+      data-bs-toggle="dropdown" aria-expanded="false">
+      All
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="/category/2">Women</a></li>
+      <li><a class="dropdown-item" href="/category/1">Men</a></li>
+      <li><a class="dropdown-item" href="/category/3">Kids</a></li>
+      <li><a class="dropdown-item" href="/category/new-arrivals">New</a></li>
+    </ul>
+  </div>
+  <div class="dropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link">
+          <img onclick="openFilter()" src="/menu-btn.svg" alt="">
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 
-<br/>
+<br />
 
-<h1><%= @category.title %></h1>
+<h1>
+  <%= @category.title %>
+</h1>
 </div>
 <div class="container">
-      <!--Show two popular product in descending order-->
-      <% @products.in_groups_of(2) do |p1, p2| %>
-        <% if p1.category_ids.include? @category.id %>
+  <!--Show two popular product in descending order-->
+  <% @products.in_groups_of(2) do |p1, p2| %>
+    <div class="grid-container">
+      <% if p1.category_ids.include? @category.id %>
         <div class="row">
-        <div class="col-6">
-          <a href="<%=products_view_path(p1.id)%>">
-              <img src=<%= p1.images.sample.url %> class="card-img " alt="...">
-              <p ><%= p1.title %></p>
-              <p style="margin-top: -10px;"><%= number_to_currency(p1.price, :unit => "$") %></p>
-          </a>
-        </div>
-        <% end %>
-       <!--Take care of Odd Number-->
-        <% if p2 %>
-          <% if p2.category_ids.include? @category.id %>
-            <div class="col-6">
-                <a href="<%=products_view_path(p2.id)%>">
-                    <img src=<%= p2.images.sample.url %> class="card-img " alt="...">
-                    <p ><%= p2.title %></p>
-                    <p style="margin-top: -10px;"><%= number_to_currency(p2.price, :unit => "$") %></p>
-                </a>
+          <div class="col-6">
+            <div class="card text-white">
+              <a href="<%=products_view_path(p1.id)%>" class="stretched-link">
+                <img src=<%=p1.images.sample.url %> class="card-img" alt="..." >
+              </a>
+              <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                <!--sample to display random collection for a random product -->
+                <form action="/">
+                  <!--Check if cookies is nil-->
+                  <% if cookies[:saved_products]== nil %>
+                    <input type="hidden" name="product_id" value=<%=p1.id%>>
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                      <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                    </div>
+                    <!--Check if cookies is not nil-->
+                  <% else %>
+                      <!--Check if cookies consist the productid-->
+                      <% if cookies[:saved_products].include?(p1.id.to_s) %>
+                        <input type="hidden" name="product_id_unsave" value=<%=p1.id%>>
+                        <!--Show Unsave-->
+                        <div class="d-flex flex-row-reverse bd-highlight">
+                          <input class="btn btn-light clickable-icon" type="submit" value="★">
+                        </div>
+                      <% else %>
+                          <input type="hidden" name="product_id" value=<%=p1.id%>>
+                          <!--Show Save-->
+                          <div class="d-flex flex-row-reverse bd-highlight">
+                            <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                          </div>
+                      <% end %>
+                  <% end %>
+                </form>
+              </div>
             </div>
-          <% end %>
-        <% end %>
+            <a href="<%=products_view_path(p1.id)%>">
+              <p>
+                <%= p1.title %>
+              </p>
+              <p style="margin-top: -10px;">
+                <%= number_to_currency(p1.price, :unit=> "$") %>
+              </p>
+            </a>
+          </div>
       <% end %>
-  </div>
+      <% if p2 %>
+            <!--Take care of Odd Number-->
+            <% if p2.category_ids.include? @category.id %>
+              <div class="col-6">
+                <div class="card text-white">
+                  <a href="<%=products_view_path(p2.id)%>" class="stretched-link">
+                    <img src=<%=p2.images.sample.url %> class="card-img" alt="...">
+                  </a>
+                  <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+                    <!--sample to display random collection for a random product -->
+                    <form action="/">
+                      <!--Check if cookies is nil-->
+                      <% if cookies[:saved_products]==nil %>
+                        <input type="hidden" name="product_id" value=<%=p2.id%>>
+                        <div class="d-flex flex-row-reverse bd-highlight">
+                          <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                        </div>
+                        <!--Check if cookies is not nil-->
+                      <% else %>
+                          <!--Check if cookies consist the productid-->
+                          <% if cookies[:saved_products].include?(p2.id.to_s) %>
+                            <input type="hidden" name="product_id_unsave" value=<%=p2.id%>>
+                            <!--Show Unsave-->
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                              <input class="btn btn-light clickable-icon" type="submit" value="★">
+                            </div>
+                          <% else %>
+                              <input type="hidden" name="product_id" value=<%=p2.id%>>
+                              <!--Show Save-->
+                              <div class="d-flex flex-row-reverse bd-highlight">
+                                <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                              </div>
+                          <% end %>
+                      <% end %>
+                    </form>
+                  </div>
+                </div>
+                <a href="<%=products_view_path(p2.id)%>">
+                  <p>
+                    <%= p2.title %>
+                  </p>
+                  <p style="margin-top: -10px;">
+                    <%= number_to_currency(p2.price, :unit=> "$")%>
+                  </p>
+                </a>
+              </div>
+              <% end %>
+      <% end %>
+        </div>
+    <% end %>
+    </div>
 </div>
 
 <div id="myFilter" class="sidebar" style="position: absolute; width:100%; left:100%; height:100%">
   <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">×</a>
   <h3 style="text-align: center; color: white">Filters</h1>
-  
-  <form action="/category/<%=@category.id%>/filter" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
-  
-    &nbsp<h1 style="color: white">Collections</h1>
-    
-    <button type="button" class="btn btn-success" id="allButton" onclick="allChange()">All</button>
-    
-    <% Collection.all.each.map(&:title).uniq.each_with_index do |c, index| %>
-      <input class="all-options" type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
-    <% end %>
-    &nbsp<h1 style="color: white">Colors</h1>
-    <% ProductVariant.all.each.map(&:color).uniq.each_with_index do |d, index| %>
-      <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="color[<%=index %>" id="<%=d %>" data-on="<%=d %>" data-off="<%=d %>" value="<%=d %>">
-    <% end %>
-    &nbsp<h1 style="color: white">Sizes</h1>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-secondary active">
-        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="S" data-on="S" data-off="S" value="S">Small
-      </label>
-      <label class="btn btn-secondary active">
-        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="M" data-on="M" data-off="M" value="M">Medium
-      </label>
-      <label class="btn btn-secondary active">
-        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="L" data-on="L" data-off="L" value="L">Large
-      </label>
-    </div>
-    <hr>
-    &nbsp<button type="Submit" class="btn btn-light" style="text-align: center;">Save Filter</button>
-  </form>
+
+    <form action="/category/<%=@category.id%>/filter" accept-charset="UTF-8" method="post"><input name="utf8"
+        type="hidden" value="✓">
+
+      &nbsp<h1 style="color: white">Collections</h1>
+
+      <button type="button" class="btn btn-success" id="allButton" onclick="allChange()">All</button>
+
+      <% Collection.all.each.map(&:title).uniq.each_with_index do |c, index| %>
+        <input class="all-options" type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary"
+          name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
+        <% end %>
+          &nbsp<h1 style="color: white">Colors</h1>
+          <% ProductVariant.all.each.map(&:color).uniq.each_with_index do |d, index| %>
+            <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary"
+              name="color[<%=index %>" id="<%=d %>" data-on="<%=d %>" data-off="<%=d %>" value="<%=d %>">
+            <% end %>
+              &nbsp<h1 style="color: white">Sizes</h1>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size"
+                    id="S" data-on="S" data-off="S" value="S">Small
+                </label>
+                <label class="btn btn-secondary active">
+                  <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size"
+                    id="M" data-on="M" data-off="M" value="M">Medium
+                </label>
+                <label class="btn btn-secondary active">
+                  <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size"
+                    id="L" data-on="L" data-off="L" value="L">Large
+                </label>
+              </div>
+              <hr>
+              &nbsp<button type="Submit" class="btn btn-light" style="text-align: center;">Save Filter</button>
+    </form>
 </div>
 
 
 <script>
-function openFilter() {
-  document.getElementById("myFilter").style.width = "100%";
-  document.getElementById("myFilter").style.left = "0";
-}
+  function openFilter() {
+    document.getElementById("myFilter").style.width = "100%";
+    document.getElementById("myFilter").style.left = "0";
+  }
 
-function closeFilter() {
-  document.getElementById("myFilter").style.width = "0";
-  document.getElementById("myFilter").style.left= "100%";
-}
+  function closeFilter() {
+    document.getElementById("myFilter").style.width = "0";
+    document.getElementById("myFilter").style.left = "100%";
+  }
 
-function allChange() {
+  function allChange() {
     $('.all-options').bootstrapToggle('toggle');
-}
+  }
 
 </script>

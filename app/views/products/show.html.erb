@@ -24,11 +24,31 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
 <form action="/">
-    <input type="hidden" name="product_id" value= <%=@product.id%>>
-    <input class="btn btn-light" type="submit" value="Save">
-</form>
+            <!--Check if cookies is nil-->
+            <% if cookies[:saved_products] == nil %> 
+              <input type="hidden" name="product_id" value= <%=@product.id%>>
+              <div class="d-flex flex-row-reverse bd-highlight">
+              <input class="btn btn-light" type="submit" value="Save" style="margin-top:20px">
+              </div>
+            <!--Check if cookies is not nil-->
+            <% else %>   
+              <!--Check if cookies consist the productid-->
+              <% if cookies[:saved_products].include?(@product.id.to_s) %>
+                <input type="hidden" name="product_id_unsave" value= <%=@product.id%>>
+                <!--Show Unsave-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light" type="submit" value="Unsave" style="margin-top:20px">
+                </div>
+              <% else %>
+                <input type="hidden" name="product_id" value= <%=@product.id%>>
+                <!--Show Save-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light " type="submit" value="Save" style="margin-top:20px">
+                </div>
+              <% end %>
+            <% end %>
+            </form>
 
 <h3 style='font-weight:bold;'>
   <%= @product.title %>

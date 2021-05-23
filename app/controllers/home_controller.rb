@@ -12,6 +12,11 @@ class HomeController < ApplicationController
       redirect_to root_path
     end
 
+    if params.include?(:product_id_unsave)
+      delete_cookies(params[:product_id_unsave])
+      redirect_to root_path
+    end
+
     if params.include?(:address)
       user = User.find_by(email: params[:address])
       if user

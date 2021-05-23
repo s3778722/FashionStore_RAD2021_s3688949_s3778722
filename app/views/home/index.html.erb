@@ -33,8 +33,40 @@
       <% @products_ordered = Product.order("popularity DESC").limit(2) %>
       <% @products_ordered.each do |p| %>
       <div class="col">
+      <div class="card text-white">
+        <a href="<%=products_view_path(p.id)%>" class="stretched-link">
+        <img src=<%= p.images.sample.url %> class="card-img" alt="...">
+        </a>
+        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+          <!--sample to display random collection for a random product -->
+            <form action="/">
+            <!--Check if cookies is nil-->
+            <% if cookies[:saved_products] == nil %> 
+              <input type="hidden" name="product_id" value= <%=p.id%>>
+              <div class="d-flex flex-row-reverse bd-highlight">
+              <input class="btn btn-light clickable-icon" type="submit" value="☆">
+              </div>
+            <!--Check if cookies is not nil-->
+            <% else %>   
+              <!--Check if cookies consist the productid-->
+              <% if cookies[:saved_products].include?(p.id.to_s) %>
+                <input type="hidden" name="product_id_unsave" value= <%=p.id%>>
+                <!--Show Unsave-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="★">
+                </div>
+              <% else %>
+                <input type="hidden" name="product_id" value= <%=p.id%>>
+                <!--Show Save-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                </div>
+              <% end %>
+            <% end %>
+            </form>
+        </div>
+      </div>
         <a href="<%=products_view_path(p.id)%>">
-          <img src=<%= p.images.sample.url %> class="card-img " alt="...">
           <p ><%= p.title %></p>
           <p  style="margin-top: -10px;"><%=number_to_currency(p.price, :unit => "$")%></p>
         </a>

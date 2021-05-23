@@ -30,25 +30,91 @@
 <h1>All</h1>
 </div>
 <div class="container">
-      <!--Show two popular product in descending order-->
+   <!--Show two popular product in descending order-->
       <% @products.in_groups_of(2) do |p1, p2| %>
+      <div class="grid-container">
       <div class="row">
       <div class="col-6">
+        <div class="card text-white">
+        <a href="<%=products_view_path(p1.id)%>" class="stretched-link">
+        <img src=<%= p1.images.sample.url %> class="card-img" alt="..." >
+        </a>
+        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+          <!--sample to display random collection for a random product -->
+            <form action="/">
+            <!--Check if cookies is nil-->
+            <% if cookies[:saved_products] == nil %> 
+              <input type="hidden" name="product_id" value= <%=p1.id%>>
+              <div class="d-flex flex-row-reverse bd-highlight">
+              <input class="btn btn-light clickable-icon" type="submit" value="☆">
+              </div>
+            <!--Check if cookies is not nil-->
+            <% else %>   
+              <!--Check if cookies consist the productid-->
+              <% if cookies[:saved_products].include?(p1.id.to_s) %>
+                <input type="hidden" name="product_id_unsave" value= <%=p1.id%>>
+                <!--Show Unsave-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="★">
+                </div>
+              <% else %>
+                <input type="hidden" name="product_id" value= <%=p1.id%>>
+                <!--Show Save-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                </div>
+              <% end %>
+            <% end %>
+            </form>
+        </div>
+        </div>
         <a href="<%=products_view_path(p1.id)%>">
-            <img src=<%= p1.images.sample.url %> class="card-img " alt="...">
             <p ><%= p1.title %></p>
             <p style="margin-top: -10px;"><%= number_to_currency(p1.price, :unit => "$") %></p>
         </a>
       </div>
       <% if p2 %> <!--Take care of Odd Number-->
         <div class="col-6">
+        <div class="card text-white">
+        <a href="<%=products_view_path(p2.id)%>" class="stretched-link">
+        <img src=<%= p2.images.sample.url %> class="card-img" alt="...">
+        </a>
+        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end">
+          <!--sample to display random collection for a random product -->
+            <form action="/">
+            <!--Check if cookies is nil-->
+            <% if cookies[:saved_products] == nil %> 
+              <input type="hidden" name="product_id" value= <%=p2.id%>>
+              <div class="d-flex flex-row-reverse bd-highlight">
+              <input class="btn btn-light clickable-icon" type="submit" value="☆">
+              </div>
+            <!--Check if cookies is not nil-->
+            <% else %>   
+              <!--Check if cookies consist the productid-->
+              <% if cookies[:saved_products].include?(p2.id.to_s) %>
+                <input type="hidden" name="product_id_unsave" value= <%=p2.id%>>
+                <!--Show Unsave-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="★">
+                </div>
+              <% else %>
+                <input type="hidden" name="product_id" value= <%=p2.id%>>
+                <!--Show Save-->
+                <div class="d-flex flex-row-reverse bd-highlight">
+                <input class="btn btn-light clickable-icon" type="submit" value="☆">
+                </div>
+              <% end %>
+            <% end %>
+            </form>
+        </div>
+        </div>
             <a href="<%=products_view_path(p2.id)%>">
-                <img src=<%= p2.images.sample.url %> class="card-img " alt="...">
-                <p><%= p2.title %></p>
-                <p style="margin-top: -10px;"><%= number_to_currency(p2.price, :unit => "$") %></p>
+                <p ><%= p2.title %></p>
+                <p style="margin-top: -10px;"><%= number_to_currency(p2.price, :unit => "$")%></p>
             </a>
         </div>
       <% end %>
+      </div>
       <% end %>
   </div>
 </div>
