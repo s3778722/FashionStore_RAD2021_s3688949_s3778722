@@ -136,6 +136,5 @@ p5.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SmockMiniDress2.jpg
 p5.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SmockMiniDress3.jpg")
 p5.product_variants.create(size: "S", color: "Pink")
 p5.product_variants.create(size: "M", color: "Pink")
-p5.product_variants.create(size: "L", color: "Pink")
 
 
