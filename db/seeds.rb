@@ -28,7 +28,6 @@ ProductVariant.destroy_all
 c1 = Category.create(title: "Men")
 c2 = Category.create(title: "Women")
 c3 = Category.create(title: "Kids")
-c4 = Category.create(title: "New")
 
 u1 = User.create(username: "admin1", password: "adminadmin", password_confirmation: "adminadmin", email: "admin1@gmail.com")
 p1 = Product.create(title: 'Short Sleeve Knit Polo', desc: 
@@ -91,3 +90,29 @@ p3.categories << c1
 p3.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford1.jpg")
 p3.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/oxford2.jpg")
 p3.product_variants.create(size: "S", color: "White")
+
+p4 = Product.create(title: 'SAS Active Super-Soft Hoodie', desc: 
+    "SAS ACTIVE Super-Soft Hoodies are oversized and longline. Perfect contemporary style to wear over leggings in the cooler months. Australian owned and designed, by School Active Sports, to be so comfortable kids will never want to take them off.
+
+
+    Our model is wearing a size Kids AU 12 hoodie. She is 13 yrs old, 166cm tall with a 74cm bust, 63cm waist and 86cm hips.
+    
+    
+    - Length: 67cm (Kids AU 12) Our model is wearing a size Kids AU 12 hoodie. She is 13 yrs old, 166cm tall with a 74cm bust, 63cm waist and 86cm hips.
+    - Cotton rich super-soft fabric
+    - Oversized hoods
+    - Front pocket
+    - Sleeves with a thumb hole in the cuff
+    - 60% Cotton, 40% Polyeste", price: 49.95, date_stocked: DateTime.new(2021, 3, 15), popularity: 1)
+p4.collections.create(title: "Hoodies")
+p4.collections.create(title: "Long Sleeves")
+p4.collections.create(title: "Sports")
+p4.categories << c3
+p4.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SASActiveSuper-SoftHoodie.jpg")
+p4.images.create(url: "https://kevymusicapp.s3.amazonaws.com/SASActiveSuper-SoftHoodie2.jpg")
+p4.product_variants.create(size: "S", color: "White")
+p4.product_variants.create(size: "M", color: "White")
+p4.product_variants.create(size: "L", color: "White")
+p4.product_variants.create(size: "S", color: "Black")
+p4.product_variants.create(size: "M", color: "Black")
+p4.product_variants.create(size: "L", color: "Black")
