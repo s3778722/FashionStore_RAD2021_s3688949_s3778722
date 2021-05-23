@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
 <div style="margin-top:-20px;" class="d-flex justify-content-between">
     <div class="dropdown">
         <button class="btn btn dropdown-toggle" style="font-size: 20px;" 
@@ -63,20 +66,27 @@
   
     &nbsp<h1 style="color: white">Collections</h1>
     
-    <p style="">Selected</p>
+    <button type="button" class="btn btn-success" id="allButton" onclick="allChange()">All</button>
+    
     <% Collection.all.each.map(&:title).uniq.each_with_index do |c, index| %>
-      <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
+      <input class="all-options" type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="collection[<%=index %>" id="<%=c %>" data-on="<%=c %>" data-off="<%=c %>" value="<%=c %>">
     <% end %>
     &nbsp<h1 style="color: white">Colors</h1>
     <% ProductVariant.all.each.map(&:color).uniq.each_with_index do |d, index| %>
       <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="color[<%=index %>" id="<%=d %>" data-on="<%=d %>" data-off="<%=d %>" value="<%=d %>">
     <% end %>
-    <p style="">Selected</p>
     &nbsp<h1 style="color: white">Sizes</h1>
-    <% ProductVariant.all.each.map(&:size).uniq.each_with_index do |s, index| %>
-      <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size[<%=index %>" id="<%=s %>" data-on="<%=s %>" data-off="<%=s %>" value="<%=s %>">
-    <% end %>
-    <p style="">Selected</p>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="S" data-on="S" data-off="S" value="S">Small
+      </label>
+      <label class="btn btn-secondary active">
+        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="M" data-on="M" data-off="M" value="M">Medium
+      </label>
+      <label class="btn btn-secondary active">
+        <input type="radio" data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" name="size" id="L" data-on="L" data-off="L" value="L">Large
+      </label>
+    </div>
     <hr>
     &nbsp<button type="Submit" class="btn btn-light" style="text-align: center;">Save Filter</button>
   </form>
@@ -92,5 +102,9 @@ function openFilter() {
 function closeFilter() {
   document.getElementById("myFilter").style.width = "0";
   document.getElementById("myFilter").style.left= "100%";
+}
+
+function allChange() {
+    $('.all-options').bootstrapToggle('toggle');
 }
 </script>

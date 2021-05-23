@@ -20,6 +20,12 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
   
+  def search
+    search_term = params[:term]
+    @products = Product.all
+    @products = Product.joins(:product_variants).where('title like ?', "%#{search_term}%").or(Product.joins(:product_variants).where('product_variants.color like ?', "%#{search_term}%")).uniq
+  end
+  
   def all_filter
     @filter = params
     if @filter[:collection]
@@ -35,10 +41,7 @@ class ProductsController < ApplicationController
       end
     end
     if @filter[:size]
-      sizeArray = Array.new
-      @filter[:size].each do |s|
-        sizeArray << s[1]
-      end
+      sizeArray = @filter[:size]
     end
     
     @products = Product.all
