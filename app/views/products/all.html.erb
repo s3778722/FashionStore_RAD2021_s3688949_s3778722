@@ -12,15 +12,12 @@
         </ul>
     </div>
       <div class="dropdown">
-        <button class="btn btn dropdown-toggle" style="font-size: 20px;" 
-        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Filter
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Women</a></li>
-            <li><a class="dropdown-item" href="#">Men</a></li>
-            <li><a class="dropdown-item" href="#">Kids</a></li>
-            <li><a class="dropdown-item" href="#">New</a></li>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link">
+              <img onclick="openFilter()" src="/menu-btn.svg" alt="">
+            </a>
+          </li>
         </ul>
     </div>
 </div>
@@ -52,3 +49,39 @@
       <% end %>
   </div>
 </div>
+
+<div id="myFilter" class="sidebar" style="position: absolute; width:100%; left:100%;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">×</a>
+  <h3 style="text-align: center; color: white">Filters</h1>
+  &nbsp<h1 style="color: white">Collections</h1>
+  
+  <p style="">Selected</p>
+  <% Collection.all.each.map(&:title).uniq.each do |c| %>
+    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" data-on="<%=c %>" data-off="<%=c %>">
+  <% end %>
+  &nbsp<h1 style="color: white">Colors</h1>
+  <% ProductVariant.all.each.map(&:color).uniq.each do |d| %>
+    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" data-on="<%=d %>" data-off="<%=d %>">
+  <% end %>
+  <p style="">Selected</p>
+  <% ProductVariant.all.each.map(&:size).uniq.each do |s| %>
+    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-offstyle="secondary" data-on="<%=s %>" data-off="<%=s %>">
+  <% end %>
+  &nbsp<h1 style="color: white">Sizes</h1>
+  <p style="">Selected</p>
+  <hr>
+  &nbsp<button class="btn btn-light" style="text-align: center;">Save Filter</button>
+</div>
+
+
+<script>
+function openFilter() {
+  document.getElementById("myFilter").style.width = "100%";
+  document.getElementById("myFilter").style.left = "0";
+}
+
+function closeFilter() {
+  document.getElementById("myFilter").style.width = "0";
+  document.getElementById("myFilter").style.left= "100%";
+}
+</script>
