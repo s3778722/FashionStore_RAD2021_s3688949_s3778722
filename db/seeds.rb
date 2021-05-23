@@ -252,3 +252,24 @@ p11.product_variants.create(size: "L", color: "Black")
 p11.product_variants.create(size: "S", color: "Blue")
 p11.product_variants.create(size: "M", color: "Blue")
 p11.product_variants.create(size: "L", color: "Blue")
+
+p12 = Product.create(title: 'Jordan Logo Hoodie', desc: 
+    "Cult-classic label C&M CAMILLA AND MARC consider modern minimalism their calling card with luxuriously paired-back staples inducing a dreamily-relaxed vibe to compliment any high-octane ensemble. The Jordan Logo Hoodie is a chameleon piece from their latest logo edit drop with signature tell-all branding on a terry-lined jersey that confers both a light midday breeze and the after-dark cool-down.
+
+    Length: 52cm (size AU 8). Our model is 180.3cm (5’11”) tall with a 83.8cm (33”) bust, a 64.8cm (25.5”) waist and 86.4cm (34”) hips.
+    
+    - Cotton terry; generous stretch; unlined; opaque
+    - Thick ribbed trims
+    - C&M logo to right chest", price: 240.00, date_stocked: DateTime.new(2020, 3, 29), popularity: 1)
+p12.collections.create(title: "Hoodies")
+p12.collections.create(title: "Jeans")
+p12.categories << c2
+p12.images.create(url: "https://kevymusicapp.s3.amazonaws.com/hoodie4.jpg")
+p12.images.create(url: "https://kevymusicapp.s3.amazonaws.com/hoodie5.jpg")
+p12.images.create(url: "https://kevymusicapp.s3.amazonaws.com/hoodie6.jpg")
+p12.product_variants.create(size: "S", color: "Black")
+p12.product_variants.create(size: "M", color: "Black")
+p12.product_variants.create(size: "L", color: "Black")
+p12.product_variants.create(size: "S", color: "White")
+p12.product_variants.create(size: "M", color: "White")
+p12.product_variants.create(size: "L", color: "White")
