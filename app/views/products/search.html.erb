@@ -10,7 +10,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= link_to product.title, product, {:style=>'text-decoration:none; font-weight:bold;'} %></td>
+        <td><%= link_to product.title, products_view, {:style=>'text-decoration:none; font-weight:bold;'} %></td>
       </tr>
     <% end %>
   </tbody>
