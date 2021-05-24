@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Han Chien Leow s3778722 %50
+Evan Blake Mason s3688949 %50
 
-Things you may want to cover:
+80% plus mark level attempted
 
-* Ruby version
+git location
+https://github.com/s3778722/RAD2021_s3688949_s3778722/
 
-* System dependencies
+heroku app deployment url
+https://my-fashion-app-rad-a1.herokuapp.com/
 
-* Configuration
+CONFIGURATION INFORMATION
 
-* Database creation
+  Make sure you have these versions of ruby & rails installed.
 
-* Database initialization
+  #Ruby version 2.7.2
+  #Rails 5.2.6 
 
-* How to run the test suite
+  run bundle.
 
-* Services (job queues, cache servers, search engines, etc.)
+  *For non heroku/postgres
+   comment out pg gem in gemfile
 
-* Deployment instructions
+  ONCE RUNNING
 
-* ...
+  rails db:migrate:reset to get tables running
+  rails db:seed to fill data
+
+  * How to run the test suite
+
+  * Deployment instructions
+
+
