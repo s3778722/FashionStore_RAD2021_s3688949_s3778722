@@ -33,7 +33,7 @@
 </div>
 <div class="container">
   <!--Show two popular product in descending order-->
-  <% @products.in_groups_of(2) do |p1, p2| %>
+  <% @products.joins(:categories).where(categories: {id: @category.id}).in_groups_of(2) do |p1, p2| %>
     <div class="grid-container">
       <% if p1.category_ids.include? @category.id %>
         <div class="row">
@@ -128,7 +128,7 @@
                 </a>
               </div>
               <% end %>
-      <% end %>
+        <% end %>
         </div>
     <% end %>
     </div>
