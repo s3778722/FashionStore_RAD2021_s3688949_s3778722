@@ -15,6 +15,55 @@ class CategoriesController < ApplicationController
     @products = Product.where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight)
   end
   
+  def new_arrivals_filter
+    @filter = params
+    if @filter[:collection]
+      collectionArray = Array.new
+      @filter[:collection].each do |e|
+        collectionArray << e[1]
+      end
+    end
+    if @filter[:color]
+      colorArray = Array.new
+      @filter[:color].each do |c|
+        colorArray << c[1]
+      end
+    end
+    if @filter[:size]
+      sizeArray = @filter[:size]
+    end
+    
+    @products = Product.all
+    
+    if @filter[:collection] && @filter[:color] && @filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray, size: sizeArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:collection] && @filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:collection] && @filter[:size] && !@filter[:color]
+      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {size: sizeArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:size] && @filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray, size: sizeArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:collection] && !@filter[:color] && !@filter[:size]
+      @products = Product.joins(:collections).where(collections: {title: collectionArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:color] && !@filter[:size] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+    
+    if @filter[:size] && !@filter[:color] && !@filter[:collection]
+      @products = Product.joins(:product_variants).where(product_variants: {size: sizeArray}).where(date_stocked: (Time.now.midnight - 3.months)..Time.now.midnight).uniq
+    end
+  end
+  
   def display_filter
     @category = Category.find(params[:id])
     @filter = params
