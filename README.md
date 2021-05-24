@@ -5,12 +5,40 @@ Evan Blake Mason s3688949 %50
 
 80% plus mark level attempted
 
+Working days:
+Han Chien Leow: Around 21 days
+Evan Blake Mason: Around 21 days
+
 git location
 https://github.com/s3778722/RAD2021_s3688949_s3778722/
 
 heroku app deployment url
 https://my-fashion-app-rad-a1.herokuapp.com/
 
+CONFIGURATION INFORMATION
+
+  Make sure you have these versions of ruby & rails installed.
+
+  #Ruby version 2.7.2
+  #Rails 5.2.6 
+
+  run bundle.
+
+  *For non heroku/postgres
+   comment out pg gem in gemfile
+
+  ONCE RUNNING
+
+  rails db:migrate:reset to get tables running
+  rails db:seed to fill data
+
+*Deployment instructions
+For initalizing database:
+heroku pg:reset DATABASE
+heroku run rake db:migrate
+heroku run rake db:seed
+
+HEROKU LOG----------
 -----> Building on the Heroku-20 stack
 -----> Using buildpack: heroku/ruby
 -----> Ruby app detected
@@ -130,27 +158,4 @@ https://my-fashion-app-rad-a1.herokuapp.com/
 -----> Launching...
        Released v13
        https://my-fashion-app-rad-a1.herokuapp.com/ deployed to Heroku
-
-CONFIGURATION INFORMATION
-
-  Make sure you have these versions of ruby & rails installed.
-
-  #Ruby version 2.7.2
-  #Rails 5.2.6 
-
-  run bundle.
-
-  *For non heroku/postgres
-   comment out pg gem in gemfile
-
-  ONCE RUNNING
-
-  rails db:migrate:reset to get tables running
-  rails db:seed to fill data
-
-  *Deployment instructions
-    For initalizing database:
-      heroku pg:reset DATABASE
-      heroku run rake db:migrate
-      heroku run rake db:seed
 
