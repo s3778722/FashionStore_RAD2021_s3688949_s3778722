@@ -23,7 +23,7 @@ CONFIGURATION INFORMATION
   *For non heroku/postgres
    comment out pg gem in gemfile
 
-  - once running.
+  ONCE RUNNING
 
   rails db:migrate:reset to get tables running
   rails db:seed to fill data
