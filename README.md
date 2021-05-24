@@ -157,5 +157,5 @@ HEROKU LOG:
        Done: 56.6M
 -----> Launching...
        Released v13
-       https://my-fashion-app-rad-a1.herokuapp.com/ deployed to Heroku
+       https://my-fashion-app-rad-a1.herokuapp.com/ deployed to Heroku 
 
