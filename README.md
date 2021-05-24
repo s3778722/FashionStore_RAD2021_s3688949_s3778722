@@ -3,7 +3,7 @@
 Han Chien Leow s3778722 %50
 Evan Blake Mason s3688949 %50
 
-80+ Level level attempted
+80+ Level attempted
 
 Working days:
 Han Chien Leow: Around 21 days
@@ -38,7 +38,7 @@ heroku pg:reset DATABASE
 heroku run rake db:migrate
 heroku run rake db:seed
 
-HEROKU LOG----------
+HEROKU LOG:
 -----> Building on the Heroku-20 stack
 -----> Using buildpack: heroku/ruby
 -----> Ruby app detected
