@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post 'forget-password', to: 'users#forget_password', as: 'forget_password_post'
   get '/login/:username/:token', to: 'sessions#login'
   get '/auth/twitter/callback', to: 'sessions#twitter'
+  get 'rating', to: 'users#rating', as: 'rating'
 
   #get 'home/index'
   root 'home#index'

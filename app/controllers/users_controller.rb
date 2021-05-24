@@ -48,6 +48,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def rating
+    if current_user != nil
+      current_user.rated = true
+      current_user.save
+    end
+  end
+
   def forget_password
     if params.include?(:forget_pw_username) && params.include?(:email_to_receive)
       user = User.find_by(username: params[:forget_pw_username])

@@ -28,7 +28,11 @@ class BagsController < ApplicationController
       @current_user.bags.where(purchased: 'false').each do |i|
         i.update(purchased: 'true')
       end
-      redirect_to cart_path, notice: 'Transaction successful'
+      if @current_user.rated == false
+        redirect_to rating_path, notice: 'Transaction successful'
+      else
+        redirect_to cart_path, notice: 'Transaction successful'
+      end
     end
   end
 

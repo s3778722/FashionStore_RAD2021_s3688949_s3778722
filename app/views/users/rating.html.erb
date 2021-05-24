@@ -1,0 +1,28 @@
+<% flash.each do |type, msg| %>
+  <br>
+  <div class="alert alert-primary" role="alert">
+    <%= msg %>
+  </div>
+<% end %>
+<h1>Rating</h1>
+<br>
+<h3>Rate your experience</h3>
+<br>
+<div class="row">
+<div class="d-flex justify-content-center">
+ <div class="rate">
+    <input type="radio" id="star5" name="rate" value="5" />
+    <label for="star5" title="5 star">5 stars</label>
+    <input type="radio" id="star4" name="rate" value="4" />
+    <label for="star4" title="4 star">4 stars</label>
+    <input type="radio" id="star3" name="rate" value="3" />
+    <label for="star3" title="3 star">3 stars</label>
+    <input type="radio" id="star2" name="rate" value="2" />
+    <label for="star2" title="2 star">2 stars</label>
+    <input type="radio" id="star1" name="rate" value="1" />
+    <label for="star1" title="1 star">1 star</label>
+</div>
+</div>
+<div class="d-grid gap-2">
+<a class="btn btn-dark" href="/" role="button">Submit</a>
+</div>
