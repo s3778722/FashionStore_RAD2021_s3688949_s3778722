@@ -37,31 +37,31 @@ class CategoriesController < ApplicationController
     @products = Product.all
     
     if @filter[:collection] && @filter[:color] && @filter[:size]
-      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+      @products = Product.joins(:collections, :product_variants, :categories).where(categories: {id: @category.id}).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray, size: sizeArray}).uniq
     end
     
     if @filter[:collection] && @filter[:color] && !@filter[:size]
-      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray}).uniq
+      @products = Product.joins(:collections, :product_variants, :categories).where(categories: {id: @category.id}).where(collections: {title: collectionArray}).where(product_variants: {color: colorArray}).uniq
     end
     
     if @filter[:collection] && @filter[:size] && !@filter[:color]
-      @products = Product.joins(:collections, :product_variants).where(collections: {title: collectionArray}).where(product_variants: {size: sizeArray}).uniq
+      @products = Product.joins(:collections, :product_variants, :categories).where(categories: {id: @category.id}).where(collections: {title: collectionArray}).where(product_variants: {size: sizeArray}).uniq
     end
     
     if @filter[:size] && @filter[:color] && !@filter[:collection]
-      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray, size: sizeArray}).uniq
+      @products = Product.joins(:product_variants, :categories).where(categories: {id: @category.id}).where(product_variants: {color: colorArray, size: sizeArray}).uniq
     end
     
     if @filter[:collection] && !@filter[:color] && !@filter[:size]
-      @products = Product.joins(:collections).where(collections: {title: collectionArray}).uniq
+      @products = Product.joins(:collections, :categories).where(categories: {id: @category.id}).where(collections: {title: collectionArray}).uniq
     end
     
     if @filter[:color] && !@filter[:size] && !@filter[:collection]
-      @products = Product.joins(:product_variants).where(product_variants: {color: colorArray}).uniq
+      @products = Product.joins(:product_variants, :categories).where(categories: {id: @category.id}).where(product_variants: {color: colorArray}).uniq
     end
     
     if @filter[:size] && !@filter[:color] && !@filter[:collection]
-      @products = Product.joins(:product_variants).where(product_variants: {size: sizeArray}).uniq
+      @products = Product.joins(:product_variants, :categories).where(categories: {id: @category.id}).where(product_variants: {size: sizeArray}).uniq
     end
   end
   
