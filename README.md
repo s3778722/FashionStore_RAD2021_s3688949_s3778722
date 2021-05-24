@@ -28,8 +28,10 @@ CONFIGURATION INFORMATION
   rails db:migrate:reset to get tables running
   rails db:seed to fill data
 
-  * How to run the test suite
 
   * Deployment instructions
-
+    For initalizing database:
+      heroku pg:reset DATABASE
+      heroku run rake db:migrate
+      heroku run rake db:seed
 
