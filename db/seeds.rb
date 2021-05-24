@@ -273,3 +273,85 @@ p12.product_variants.create(size: "L", color: "Black")
 p12.product_variants.create(size: "S", color: "White")
 p12.product_variants.create(size: "M", color: "White")
 p12.product_variants.create(size: "L", color: "White")
+
+p13 = Product.create(title: 'Sonita Plisse Skater Dress', desc: 
+    "Feminine design meets trending style. The Sonita Plisse Skater Dress from Forever New is the piece your wardrobe's been waiting for.
+
+    Our model is wearing a size AU 8. She usually takes a standard AU 8, is 5\"10 (180cm) tall, has an 81cm bust, 89cm hips and a 66cm waist.
+    
+    - Length: 87cm (Size AU 8)
+    - Regular fit
+    - Lightweight plisse fabrication
+    - Wrapped bodice
+    - V-neckline
+    - Full-length blouson sleeves with elasticated cuffs
+    - Elastic waist
+    - Floaty ruffled mini skirt
+    - Slip-on style
+    - Lined", price: 159.99, date_stocked: DateTime.new(2021, 5, 3), popularity: 1)
+p13.collections.create(title: "Dresses")
+p13.collections.create(title: "Forever New")
+p13.collections.create(title: "V-neckline")
+p13.categories << c2
+p13.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/forevernew1.jpg")
+p13.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/forevernew2.jpg")
+p13.product_variants.create(size: "S", color: "Green")
+p13.product_variants.create(size: "M", color: "Green")
+p13.product_variants.create(size: "L", color: "Green")
+
+p14 = Product.create(title: 'Holly Cable Wool Blend Jumper', desc: 
+    "Atmos&Here's Holly Cable Wool Blend Jumper features a cropped rolled hem that pairs perfectly with your favourite high-waisted denim.
+
+    Length: 50cm (size AU 8). Our model is 176.5cm (5’9.5”) tall with a 81.3cm (32”) bust, a 62.2cm (24.5”) waist and 91.4cm (36”) hips.
+    
+    - Wool-blend cable knit; mild stretch
+    - Turtleneck
+    - Boxy fit
+    - Dolman sleeves", price: 79.99, date_stocked: DateTime.new(2021, 1, 2), popularity: 1)
+p14.collections.create(title: "Jumpers")
+p14.collections.create(title: "Wool")
+p14.collections.create(title: "Knitwear")
+p14.categories << c2
+p14.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/atmos1.jpg")
+p14.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/atmos2.jpg")
+p14.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/atmos3.jpg")
+p14.product_variants.create(size: "M", color: "Blue")
+p14.product_variants.create(size: "L", color: "Blue")
+
+p15 = Product.create(title: 'Herringbone Blazer', desc: 
+    "The Brooksfield brand embraces heritage and craftsmanship to create beautiful, timeless pieces that have longevity and trans-seasonal appeal. Combining neutrals with soft tailored looks that feel modern, the blazer collection delivers value in attention to detail.
+    Our model is wearing a size 40 Blazer. He is 191cm (6'2\") tall with a 101cm (40\") chest and a 81cm (32\") waist.
+    - Length: 73cm (size 40)- Tailored fit- Cotton blend; plain herringbone design; natural stretch; fully-lined- Contrast internal body lining - polyester / viscose blend- Notched lapels; single pinhole with brand embossed resin pin - Single-breasted construction; natural horn button hardware- Single breast pocket; dot print lining can be repurposed as a pocket square- Lined twin waist patch pockets- Panelled side seams for tailored fit- Curved hemline; rear double kick vents- Two interior pockets; single interior coin pocket- Long sleeves; decorative three-button cuff - Designed in Australia
+    PLEASE NOTE: The Brooksfield blazer range is designed to a slim silhouette, please consider sizing up for a more relaxed fit.", price: 279.99, date_stocked: DateTime.new(2021, 4, 7), popularity: 1)
+p15.collections.create(title: "Blazer")
+p15.collections.create(title: "Formal")
+p15.categories << c1
+p15.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/blazer1.jpg")
+p15.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/blazer2.jpg")
+p15.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/blazer3.jpg")
+p15.product_variants.create(size: "S", color: "Army")
+p15.product_variants.create(size: "M", color: "Army")
+p15.product_variants.create(size: "L", color: "Army")
+
+p16 = Product.create(title: 'Stinger Skinny Jeans', desc: 
+    "The Stinger Skinny Jeans by Rolla's are cut close to the leg and are an essential addition to any self-respecting denim edit.
+
+    Length: Inside Leg: 77cm; Front Rise: 25cm; Leg Opening: 39cm (size W28/L32). Our model is 186.7cm (6’1.5”) tall with a 96.5cm (38”) chest and a 81.3cm (32”) waist.
+    
+    - Stretch cotton-rich denim 
+    - Skinny fit 
+    - Ripped knee 
+    - Belt loops to waist 
+    - Zip fly
+    - Pockets to hips and rear", price: 159.95, date_stocked: DateTime.new(2020, 4, 7), popularity: 1)
+p16.collections.create(title: "Jeans")
+p16.collections.create(title: "Skinny Fit")
+p16.categories << c1
+p16.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/jeans1.jpg")
+p16.images.create(url: "https://rad-product-img.s3.us-east-2.amazonaws.com/jeans2.jpg")
+p16.product_variants.create(size: "S", color: "Black")
+p16.product_variants.create(size: "M", color: "Black")
+p16.product_variants.create(size: "L", color: "Black")
+p16.product_variants.create(size: "S", color: "Blue")
+p16.product_variants.create(size: "M", color: "Blue")
+p16.product_variants.create(size: "L", color: "Blue")
